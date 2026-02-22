@@ -1,0 +1,3 @@
+displayName = Cardinal Classes Mod
+author = honse
+version = 0.1

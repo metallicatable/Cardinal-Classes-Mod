@@ -1,0 +1,13 @@
+BARBARIAN
+Revered ++
+
+CULTIST
+Eldritch ++
+Elated +
+Exorcized -
+
+HERETIC
+
+
+DRUID
+Spiritbound ++

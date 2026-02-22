@@ -1,0 +1,127 @@
+# This file will automatically update with entries for new content after a build and reload.
+
+Items: {
+	theBarbarian: {
+		DisplayName: the Barbarian
+		Tooltip:
+			'''
+			Barbarians attack with blunt weapons and brute force,
+			allowing their rage to build up through taking and dealing
+			blows, before dropping their guard and flying into a 
+			berserking frenzy, where they can strike with devastating power.
+			'''
+	}
+
+	theCultist: {
+		DisplayName: The Cultist
+		Tooltip:
+			'''
+			By using weak spells, Cultists can focus on
+			their faith in Azathoth, influencing his dream
+			to unleash powerful, reality-bending attacks.
+			'''
+	}
+
+	theDruid: {
+		DisplayName: The Druid
+		Tooltip:
+			'''
+			Druids use imbued weapons to steal the life
+			essence of their foes, overcharging their weapons
+			for stronger attacks, without reliance on mana
+			of the body or soul.
+			'''
+	}
+
+	theHeretic: {
+		DisplayName: The Heretic
+		Tooltip:
+			'''
+			By dissolving mana out of their own blood,
+			Heretics can cast strong spells at a moment's
+			notice, though overuse can lead to a quick demise.
+			'''
+	}
+
+	CoralBlast: {
+		DisplayName: Coral Blast
+		Tooltip: ""
+	}
+
+	DandelionSwarm: {
+		DisplayName: Dandelion Swarm
+		Tooltip: ""
+	}
+
+	FlamingSlimeRain: {
+		DisplayName: Flaming Slime Rain
+		Tooltip: ""
+	}
+
+	SlimeRain: {
+		DisplayName: Slime Rain
+		Tooltip: ""
+	}
+
+	TrappersImplement: {
+		DisplayName: Trappers Implement
+		Tooltip: ""
+	}
+
+	laserBomb: {
+		DisplayName: laser Bomb
+		Tooltip: ""
+	}
+
+	twoByFour: {
+		DisplayName: 2x4
+		Tooltip:
+			'''
+			A truly legendary weapon, revered for its internal complexity and combat prowess.
+			Wield with care, for the sake of the world.
+			'''
+	}
+}
+
+UI: {
+	rage: Mods.fourClassesMod.UI.rage
+	Faith: Mods.fourClassesMod.UI.Faith
+	Energy: Mods.fourClassesMod.UI.Energy
+}
+
+DamageClasses: {
+	HereticDamageClass.DisplayName: Heretic Damage Class
+	BarbarianDamageClass.DisplayName: Barbarian Damage Class
+	CultistDamageClass.DisplayName: Cultist Damage Class
+	DruidDamageClass.DisplayName: Druid Damage Class
+}
+
+Projectiles: {
+	ChargedDandelionSwarmSeeds.DisplayName: Charged Dandelion Swarm Seeds
+	DandelionSwarmSeeds.DisplayName: Dandelion Swarm Seeds
+	DandelionSwarmSeedsChargeClone.DisplayName: Dandelion Swarm Seeds Charge Clone
+	dartTrapProjectile.DisplayName: dart Trap Projectile
+	dartTrapProjectileDart.DisplayName: dart Trap Projectile Dart
+	flamingSlimeGunCloneStream.DisplayName: flaming Slime Gun Clone Stream
+	flamingSlimeSpikeClone.DisplayName: flaming Slime Spike Clone
+	mixedCoralProjectile1.DisplayName: mixed Coral Projectile1
+	mixedCoralProjectile2.DisplayName: mixed Coral Projectile2
+	mixedCoralProjectile3.DisplayName: mixed Coral Projectile3
+	mixedCoralProjectile4.DisplayName: mixed Coral Projectile4
+	mixedCoralProjectile5.DisplayName: mixed Coral Projectile5
+	mixedCoralProjectile6.DisplayName: mixed Coral Projectile6
+	mixedCoralProjectile7.DisplayName: mixed Coral Projectile7
+	mixedCoralProjectile8.DisplayName: mixed Coral Projectile8
+	SlimeGunCloneStream.DisplayName: Slime Gun Clone Stream
+	slimeSpikeClone.DisplayName: slime Spike Clone
+	starFishProjectile.DisplayName: star Fish Projectile
+	laserCloneProjectile.DisplayName: laser Clone Projectile
+	laserCloneProjectile2.DisplayName: laser Clone Projectile2
+}
+
+Buffs: {
+	rageBuff: {
+		DisplayName: rage Buff
+		Description: Mods.fourClassesMod.Buffs.rageBuff.Description
+	}
+}
