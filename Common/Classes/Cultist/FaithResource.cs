@@ -66,7 +66,7 @@ namespace fourClassesMod.Common.Classes.Cultist
             FaithRegenTimer++; // Increase it by 60 per second, or 1 per tick.
 
             // A simple timer that goes up to 1 second, increases the FaithCurrent by 1 and then resets back to 0.
-            if (FaithRegenTimer > 6 / FaithRegenRate)
+            if (FaithRegenTimer > 6 / FaithRegenRate && Main.LocalPlayer.HeldItem.DamageType == ModContent.GetInstance<CultistDamageClass>())
             {
                 FaithCurrent += 1;
                 FaithRegenTimer = 0;

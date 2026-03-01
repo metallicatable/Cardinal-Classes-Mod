@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace CultistClass.Common.Classes.Heretic
+namespace fourClassesMod.Common.Classes.Heretic
 {
     public class HereticDamageClass : DamageClass
     {

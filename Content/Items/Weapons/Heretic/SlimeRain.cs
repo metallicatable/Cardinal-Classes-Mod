@@ -1,15 +1,20 @@
-﻿using fourClassesMod.Common.Classes.Cultist;
+﻿using fourClassesMod.Common.Classes.Heretic;
 using Microsoft.Xna.Framework;
+using Steamworks;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace fourClassesMod.Content.Items.Weapons.Cultist
+namespace fourClassesMod.Content.Items.Weapons.Heretic
 {
     internal class SlimeRain : ModItem
     {
 
-        private int faithCost; // Add our custom resource cost
+        private int lifeCost; // Add our custom resource cost
+        private string deathMessage;
+        private int messageHelper;
 
         public override string Texture => $"fourClassesMod/Sprites/Weapons/Slime_Rain";
 
@@ -23,10 +28,10 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
             Item.width = 32;
             Item.height = 32;
             Item.UseSound = SoundID.Item1;
-            Item.DamageType = ModContent.GetInstance<CultistDamageClass>();
+            Item.DamageType = ModContent.GetInstance<HereticDamageClass>();
             Item.autoReuse = false;
             Item.noMelee = true; // The projectile will do the damage and not the item
-            faithCost = 75;
+            lifeCost = 50;
             Item.rare = ItemRarityID.White;
             Item.shoot = ProjectileID.PurificationPowder;
 
@@ -36,22 +41,29 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
         // Make sure you can't use the item if you don't have enough resource
 
 
-        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            var faithPlayer = player.GetModPlayer<FaithPlayer>();
-
-            if (faithPlayer.FaithCurrent >= faithCost)
+            messageHelper = Main.rand.Next(0, 4);
+            if (messageHelper == 0)
             {
-                type = ModContent.ProjectileType<SlimeGunCloneStream>();
-                faithPlayer.FaithCurrent -= faithCost;
+                deathMessage = $"{player.name}'s blood became dry of mana, unable to sustain its body.";
             }
-            else
+            if (messageHelper == 1)
             {
-                type = ModContent.ProjectileType<slimeSpikeClone>();
-                damage = damage / 8;
-                knockback = knockback * 1.2f;
-                velocity = velocity * 2;
+                deathMessage = $"{player.name} overdrew their own life essence.";
             }
+            if (messageHelper == 2)
+            {
+                deathMessage = $"{player.name} got greedy.";
+            }
+            if (messageHelper == 4)
+            {
+                deathMessage = $"{player.name} was consumed by their own magiks.";
+            }
+            type = ModContent.ProjectileType<SlimeGunCloneStream>();
+            Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
+            player.Hurt(PlayerDeathReason.ByCustomReason(NetworkText.FromKey(deathMessage)), lifeCost, 0, false, false, -1, false, 500, 500, 0f);
+            return false;
         }
     }
 

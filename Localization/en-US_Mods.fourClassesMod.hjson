@@ -81,6 +81,11 @@ Items: {
 			Wield with care, for the sake of the world.
 			'''
 	}
+
+	TrappersDream: {
+		DisplayName: Trappers Dream
+		Tooltip: ""
+	}
 }
 
 UI: {
@@ -90,10 +95,10 @@ UI: {
 }
 
 DamageClasses: {
-	HereticDamageClass.DisplayName: Heretic Damage Class
-	BarbarianDamageClass.DisplayName: Barbarian Damage Class
-	CultistDamageClass.DisplayName: Cultist Damage Class
-	DruidDamageClass.DisplayName: Druid Damage Class
+	HereticDamageClass.DisplayName: heretic damage
+	BarbarianDamageClass.DisplayName: barbaric damage
+	CultistDamageClass.DisplayName: cultic damage
+	DruidDamageClass.DisplayName: druidic damage
 }
 
 Projectiles: {
@@ -117,11 +122,16 @@ Projectiles: {
 	starFishProjectile.DisplayName: star Fish Projectile
 	laserCloneProjectile.DisplayName: laser Clone Projectile
 	laserCloneProjectile2.DisplayName: laser Clone Projectile2
+	superDartTrapProjectile.DisplayName: super Dart Trap Projectile
+	superDartTrapProjectileDart.DisplayName: super Dart Trap Projectile Dart
+	superFlameTrapProjectile.DisplayName: super Flame Trap Projectile
+	superSpikyBallTrapProjectile.DisplayName: super Spiky Ball Trap Projectile
+	superSpikyBallTrapProjectileSpikyBall.DisplayName: super Spiky Ball Trap Projectile Spiky Ball
 }
 
 Buffs: {
 	rageBuff: {
-		DisplayName: rage Buff
-		Description: Mods.fourClassesMod.Buffs.rageBuff.Description
+		DisplayName: Rage
+		Description: You are overflowing with rage, sharply increasing damage and attack speed.
 	}
 }

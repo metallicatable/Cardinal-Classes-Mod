@@ -1,5 +1,6 @@
 ﻿using fourClassesMod.Common.Classes.Barbarian;
 using Microsoft.Xna.Framework;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,7 +13,8 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
         public override string Texture => $"fourClassesMod/Sprites/Weapons/twoByFour";
 
         public override void SetDefaults()
-        {          
+        {
+
             Item.damage = 24;
             Item.knockBack = 4f;
             Item.useStyle = ItemUseStyleID.Swing; // Makes the player do the proper arm motion
@@ -24,6 +26,6 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
             Item.DamageType = ModContent.GetInstance<BarbarianDamageClass>();
             Item.autoReuse = true;
             Item.rare = ItemRarityID.White;
-        }
-    }  
+        }    
+    }
 }
