@@ -106,6 +106,16 @@ Items: {
 		DisplayName: Spinespitter
 		Tooltip: ""
 	}
+
+	MacabreScroll: {
+		Tooltip: ""
+		DisplayName: Macabre Scroll
+	}
+
+	TaintedScroll: {
+		Tooltip: ""
+		DisplayName: Tainted Scroll
+	}
 }
 
 UI: {
