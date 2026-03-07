@@ -86,6 +86,26 @@ Items: {
 		DisplayName: Trappers Dream
 		Tooltip: ""
 	}
+
+	GeliticTransmutation: {
+		DisplayName: Gelitic Transmutation
+		Tooltip: ""
+	}
+
+	Spinesplitter: {
+		DisplayName: Spinesplitter
+		Tooltip: ""
+	}
+
+	DruidItemName: {
+		DisplayName: Druid Item Name
+		Tooltip: ""
+	}
+
+	Spinespitter: {
+		DisplayName: Spinespitter
+		Tooltip: ""
+	}
 }
 
 UI: {
@@ -127,6 +147,14 @@ Projectiles: {
 	superFlameTrapProjectile.DisplayName: super Flame Trap Projectile
 	superSpikyBallTrapProjectile.DisplayName: super Spiky Ball Trap Projectile
 	superSpikyBallTrapProjectileSpikyBall.DisplayName: super Spiky Ball Trap Projectile Spiky Ball
+	gelStream.DisplayName: gel Stream
+	transmutationHandler.DisplayName: transmutation Handler
+	babySlimeClone.DisplayName: baby Slime Clone
+	burstFireball.DisplayName: burst Fireball
+	piercingFireball.DisplayName: piercing Fireball
+	druidExampleProjectile.DisplayName: druid Example Projectile
+	Spines.DisplayName: Spines
+	SpinesBall.DisplayName: Spines Ball
 }
 
 Buffs: {

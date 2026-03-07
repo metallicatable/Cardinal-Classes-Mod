@@ -1,16 +1,19 @@
-﻿using fourClassesMod.Common.Classes.Cultist;
+﻿using fourClassesMod.Common;
+using fourClassesMod.Common.Classes.Cultist;
+using fourClassesMod.Common.Classes.Heretic;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace fourClassesMod.Content.Items.Weapons.Cultist
+namespace fourClassesMod.Content.Items.Weapons.Heretic
 {
     internal class FlamingSlimeRain : ModItem
     {
 
-        private int faithCost; // Add our custom resource cost
-
+        private int lifeCost;
         public override string Texture => $"Terraria/Images/Item_{ItemID.PalmWoodDoor}";
 
         public override void SetDefaults()
@@ -23,10 +26,10 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
             Item.width = 32;
             Item.height = 32;
             Item.UseSound = SoundID.Item1;
-            Item.DamageType = ModContent.GetInstance<CultistDamageClass>();
+            Item.DamageType = ModContent.GetInstance<HereticDamageClass>();
             Item.autoReuse = false;
             Item.noMelee = true; // The projectile will do the damage and not the item
-            faithCost = 75;
+            lifeCost = 50;
             Item.rare = ItemRarityID.White;
             Item.shoot = ProjectileID.PurificationPowder;
 
@@ -36,22 +39,12 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
         // Make sure you can't use the item if you don't have enough resource
 
 
-        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            var faithPlayer = player.GetModPlayer<FaithPlayer>();
-
-            if (faithPlayer.FaithCurrent >= faithCost)
-            {
-                type = ModContent.ProjectileType<flamingSlimeGunCloneStream>();
-                faithPlayer.FaithCurrent -= faithCost;
-            }
-            else
-            {
-                type = ModContent.ProjectileType<flamingSlimeSpikeClone>();
-                damage = damage / 8;
-                knockback = knockback * 1.2f;
-                velocity = velocity * 2;
-            }
+            type = ModContent.ProjectileType<flamingSlimeGunCloneStream>();
+            Projectile.NewProjectile(source, position, velocity, type, damage, knockback);
+            player.Hurt(PlayerDeathReason.ByCustomReason(NetworkText.FromKey(ModContent.GetInstance<DeathMessagesPlayer>().hereticDeathMessages)), lifeCost, 0, false, false, -1, false, 500, 500, 0f);
+            return false;
         }
     }
 
@@ -73,7 +66,7 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
         public override void OnKill(int timeLeft)
         {
             Vector2 launchVelocity = new Vector2(0, -2); // Create a velocity moving down
-            Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center, Vector2.Zero, ProjectileID.Flames, Projectile.damage * 2, Projectile.knockBack, Projectile.owner);
+            Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center, Vector2.Zero, ProjectileID.Flames, Projectile.damage * 2, Projectile.knockBack, Projectile.owner);
 
             for (int i = 0; i < 100; i++)
             {
@@ -81,7 +74,7 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
                 launchVelocity = launchVelocity.RotatedBy(MathHelper.ToRadians(Main.rand.NextFloat(0, 361)));
                 launchVelocity *= Main.rand.Next(1, 6);
 
-                Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center, launchVelocity, ModContent.ProjectileType<flamingSlimeSpikeClone>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center, launchVelocity, ModContent.ProjectileType<flamingSlimeSpikeClone>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
                 launchVelocity = new Vector2(0, -2);
 
                 //calculate for sparks

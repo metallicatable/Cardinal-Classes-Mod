@@ -9,7 +9,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
 {
     internal class laserBomb : ModItem
     {
-
+        
         private int energyCost; // Add our custom resource cost
         int laserColourTimer = 0;
         public override string Texture => $"Terraria/Images/Item_{ItemID.IronBroadsword}";
@@ -93,6 +93,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
 
     public class laserCloneProjectile : ModProjectile
     {
+        int energyGained = 1;
         public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.PurpleLaser}";
         public override void SetDefaults()
         {
@@ -117,12 +118,20 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
             lightColor.A = 50;
             return lightColor;
         }
-       
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) // add energy to on hits
+        {
+            var energyPlayer = ModContent.GetInstance<EnergyPlayer>();
+            energyPlayer.energyGain += energyGained;
+
+        }
+
 
     }
 
     public class laserCloneProjectile2 : ModProjectile
     {
+        int energyGained = 1;
         public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.PurpleLaser}";
         public override void SetDefaults()
         {
@@ -147,7 +156,13 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
             lightColor.A = 50;
             return lightColor;
         }
-        
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) // add energy to on hits
+        {
+            var energyPlayer = ModContent.GetInstance<EnergyPlayer>();
+            energyPlayer.energyGain += energyGained;
+
+        }
 
     }
 }

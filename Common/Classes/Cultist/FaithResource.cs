@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using fourClassesMod.Content.Items.Weapons.Cultist;
+using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using Terraria;
@@ -62,8 +63,15 @@ namespace fourClassesMod.Common.Classes.Cultist
         // Lets do all our logic for the custom resource here, such as limiting it, increasing it and so on.
         private void UpdateResource()
         {
-            // For our resource lets make it regen slowly over time to keep it simple, let's use FaithRegenTimer to count up to whatever value we want, then increase currentResource.
-            FaithRegenTimer++; // Increase it by 60 per second, or 1 per tick.
+            if (Main.LocalPlayer.HeldItem.type == ModContent.ItemType<GeliticTransmutation>())
+            {
+                FaithRegenRate = 0.5f;
+            }
+            else
+            {
+                FaithRegenRate = 1f;
+            }
+                FaithRegenTimer++; // Increase it by 60 per second, or 1 per tick.
 
             // A simple timer that goes up to 1 second, increases the FaithCurrent by 1 and then resets back to 0.
             if (FaithRegenTimer > 6 / FaithRegenRate && Main.LocalPlayer.HeldItem.DamageType == ModContent.GetInstance<CultistDamageClass>())

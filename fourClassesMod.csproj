@@ -7,6 +7,9 @@
 	<PropertyGroup>
 		
 	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="Content\Items\Weapons\Cultist\GeliticTransmutation.cs" />
+	</ItemGroup>
 
 	<!-- References -->
 

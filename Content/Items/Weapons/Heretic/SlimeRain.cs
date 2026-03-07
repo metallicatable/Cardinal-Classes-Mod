@@ -6,6 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using fourClassesMod.Common;
 
 namespace fourClassesMod.Content.Items.Weapons.Heretic
 {
@@ -43,26 +44,9 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            messageHelper = Main.rand.Next(0, 4);
-            if (messageHelper == 0)
-            {
-                deathMessage = $"{player.name}'s blood became dry of mana, unable to sustain its body.";
-            }
-            if (messageHelper == 1)
-            {
-                deathMessage = $"{player.name} overdrew their own life essence.";
-            }
-            if (messageHelper == 2)
-            {
-                deathMessage = $"{player.name} got greedy.";
-            }
-            if (messageHelper == 4)
-            {
-                deathMessage = $"{player.name} was consumed by their own magiks.";
-            }
             type = ModContent.ProjectileType<SlimeGunCloneStream>();
             Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
-            player.Hurt(PlayerDeathReason.ByCustomReason(NetworkText.FromKey(deathMessage)), lifeCost, 0, false, false, -1, false, 500, 500, 0f);
+            player.Hurt(PlayerDeathReason.ByCustomReason(NetworkText.FromKey(ModContent.GetInstance<DeathMessagesPlayer>().hereticDeathMessages)), lifeCost, 0, false, false, -1, false, 500, 500, 0f);
             return false;
         }
     }

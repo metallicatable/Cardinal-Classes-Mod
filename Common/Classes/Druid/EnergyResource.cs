@@ -81,10 +81,6 @@ namespace fourClassesMod.Common.Classes.Druid
             }
         }
 
-        public override void OnHitAnything(float x, float y, Entity victim)
-        {
-            EnergyCurrent += energyGain;
-        }
 
         // Responsible for spawning and syncing just the CombatText
         public void HealEnergyEffect(int healAmount)
