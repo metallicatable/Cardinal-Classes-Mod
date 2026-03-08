@@ -117,7 +117,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
 
         public override void AI() // called every frame
         {
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2; // make the projectile face the direction it's moving
+            Projectile.rotation = Projectile.velocity.ToRotation(); // make the projectile face the direction it's moving
 
             Projectile.velocity.Y += 0.6f;
 
@@ -138,8 +138,8 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
 
         public override void SetDefaults()
         {
-            Projectile.width = 32;
-            Projectile.height = 32;
+            Projectile.width = 16;
+            Projectile.height = 16;
             Projectile.friendly = true;
             Projectile.DamageType = ModContent.GetInstance<DruidDamageClass>();
             Projectile.penetrate = -1; // This makes the projectile disappear after hitting an enemy once
@@ -152,7 +152,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
         public override void AI() // called every frame
         {
 
-            if (timer % 3 == 0)
+            if (timer % 1 == 0)
             {
                 rotationHelper++;
             }

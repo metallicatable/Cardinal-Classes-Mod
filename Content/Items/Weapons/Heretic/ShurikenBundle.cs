@@ -15,8 +15,6 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
     {
 
         private int lifeCost; // Add our custom resource cost 
-        private string deathMessage;
-        private int messageHelper;
 
         public override string Texture => $"fourClassesMod/Sprites/Weapons/Shuriken_Bundle"; 
 
@@ -46,9 +44,9 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
         {
             float numberProjectiles = 5;
             float rotation = MathHelper.ToRadians(0); 
-            type = ProjectileID.Shuriken; 
-            player.Hurt(PlayerDeathReason.ByCustomReason(NetworkText.FromKey(ModContent.GetInstance<DeathMessagesPlayer>().hereticDeathMessages)), lifeCost, 0, false, false, -1, false, 500, 500, 0f);
-     
+            type = ProjectileID.Shuriken;
+            player.Hurt(player.DeathByLocalization("hereticDeathMessages." + Main.rand.Next(4)), lifeCost, 0, false, false, -1, false, 500, 500, 0f);
+
 
             position += Vector2.Normalize(velocity) * 45f; 
 
