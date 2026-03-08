@@ -116,6 +116,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Tainted Scroll
 	}
+
+	ShurikenBundle: {
+		Tooltip: ""
+		DisplayName: Shuriken Bundle
+	}
 }
 
 UI: {
