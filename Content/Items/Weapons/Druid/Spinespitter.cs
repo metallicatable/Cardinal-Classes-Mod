@@ -14,7 +14,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
     {
 
         private int energyCost; // energy cost per right click
-        public override string Texture => $"Terraria/Images/Item_{ItemID.IronBroadsword}"; //for using vanilla sprites
+        public override string Texture => $"fourClassesMod/Sprites/Weapons/Spinespitter"; //for using vanilla sprites
         // public override string Texture => $"fourClassesMod/Sprites/Weapons/Dandelion_Swarm"; this is for a modded sprite, use the correct file path
         public override void SetDefaults()
         {
@@ -33,7 +33,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
             // Item.rare = ModContent.RarityType<lunarBlue>();    for modded rarities
             Item.shoot = ProjectileID.PurificationPowder; // keep as purification powder always, to stay consistent
 
-            Item.shootSpeed = 8f; // affects Projectile.velocity
+            Item.shootSpeed = 12f; // affects Projectile.velocity
         }
 
         public override bool AltFunctionUse(Player player) 
@@ -89,10 +89,10 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
     }
     
 
-    public class Spines : ModProjectile // add a projectile to this file for the weapon to fire
+    public class Spine : ModProjectile // add a projectile to this file for the weapon to fire
     {
         int energyGained = 1;
-        public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.RollingCactusSpike}"; // why not
+        public override string Texture => "fourClassesMod/Sprites/Projectiles/Spine"; // why not
         int timer = 0; // timer used in the projectile AI
         int dustRate = 10; // variable used in the projectile AI to spawn dust
 
@@ -118,16 +118,23 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
         public override void AI() // called every frame
         {
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2; // make the projectile face the direction it's moving
+
+            Projectile.velocity.Y += 0.6f;
+
+            if (Projectile.velocity.Y > 16f)
+            {
+                Projectile.velocity.Y = 16f;
+            }
         }
     }
 
     public class SpinesBall : ModProjectile // add a projectile to this file for the weapon to fire
     {
-        public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.RollingCactus}"; // why not
+        public override string Texture => "fourClassesMod/Sprites/Projectiles/SpineBall"; // why not
         int timer = 1; // timer used in the projectile AI
         int rotationHelper = 1;
-        Vector2 dustCircle = new Vector2(0, 32);
-        Vector2 dustVelocity = new Vector2(0, 0);
+        
+
 
         public override void SetDefaults()
         {
@@ -138,29 +145,36 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
             Projectile.penetrate = -1; // This makes the projectile disappear after hitting an enemy once
             Projectile.timeLeft = 300; // ticks until despawn
             Projectile.usesLocalNPCImmunity = true; // uses local iframes
-            Projectile.localNPCHitCooldown = -1; // -1 means each projectile can hit an enemy once only
         }
 
 
 
         public override void AI() // called every frame
         {
-            dustCircle = Vector2.Zero.RotatedByRandom(MathHelper.ToRadians(180));
-            dustVelocity = dustCircle.RotatedBy(MathHelper.ToRadians(90));
 
             if (timer % 3 == 0)
             {
                 rotationHelper++;
             }
 
-               
-                
-            Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position, dustVelocity, ProjectileID.WoodenArrowFriendly, 10, 1f);
-                
+
+            if (timer > 30)
+            {
+                Vector2 perturbedSpeed = new Vector2(0, 11);
+                int rotationCoeff = Main.rand.Next(0, 91);
+
+                perturbedSpeed = perturbedSpeed.RotatedBy(rotationCoeff);
+                for (int i = 0; i < 5; i++)
+                {
+                    perturbedSpeed = perturbedSpeed.RotatedBy(MathHelper.ToRadians(72));
+                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position, perturbedSpeed, ModContent.ProjectileType<Spine>(), 20, 1f);
+                }
+
+                Projectile.Kill();
+            }
 
             
             Projectile.rotation += MathHelper.ToRadians(rotationHelper);
-            Projectile.velocity *= 0.97f;
 
             timer++;
         }
