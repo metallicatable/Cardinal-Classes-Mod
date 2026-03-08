@@ -121,6 +121,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Shuriken Bundle
 	}
+
+	WintersWarmth: {
+		DisplayName: Winters Warmth
+		Tooltip: ""
+	}
 }
 
 UI: {
@@ -171,6 +176,8 @@ Projectiles: {
 	Spines.DisplayName: Spines
 	SpinesBall.DisplayName: Spines Ball
 	Spine.DisplayName: Spine
+	campfireProjectile.DisplayName: campfire Projectile
+	snowBallClone.DisplayName: snow Ball Clone
 }
 
 Buffs: {

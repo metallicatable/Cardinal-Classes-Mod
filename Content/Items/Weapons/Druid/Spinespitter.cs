@@ -65,7 +65,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
             }
             else // what to do when left clicked
             {
-                type = ProjectileID.WoodenArrowFriendly; // fires wooden arrows when left clicks
+                type = ModContent.ProjectileType<Spine>(); // fires wooden arrows when left clicks
 
                 perturbedVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(5)); // This adds a random spread to the projectiles, 5 degrees in either direction.
                 perturbedVelocity *= 2f + Main.rand.NextFloat(-0.5f, 0.5f); // randomizes velocity by at minumum 1.5x and maximum 2.5x
@@ -75,17 +75,18 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
             }               
         }
 
-        /*
+        
         public override void AddRecipes()     // creates the recipe, which is commented out as this weapon should not be obtainable and therefore has no recipe
         {
             CreateRecipe()
-                .AddIngredient(ItemID.HellstoneBar, 8)
-                .AddIngredient(ItemID.Bone, 80)
+                .AddIngredient(ItemID.AntlionMandible, 4)
+                .AddIngredient(ItemID.Cactus, 50)
+                .AddIngredient(ItemID.FossilOre, 15)
                 .AddTile(TileID.Anvils)
                 .Register();
         }
 
-        */
+        
     }
     
 
