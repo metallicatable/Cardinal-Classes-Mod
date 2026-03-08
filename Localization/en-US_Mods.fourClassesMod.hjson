@@ -165,6 +165,7 @@ Projectiles: {
 	druidExampleProjectile.DisplayName: druid Example Projectile
 	Spines.DisplayName: Spines
 	SpinesBall.DisplayName: Spines Ball
+	Spine.DisplayName: Spine
 }
 
 Buffs: {
@@ -172,4 +173,11 @@ Buffs: {
 		DisplayName: Rage
 		Description: You are overflowing with rage, sharply increasing damage and attack speed.
 	}
+}
+
+hereticDeathMessages: {
+	0: "{0}'s blood became dry of mana, unable to sustain its body."
+	1: "{0} overdrew their own life essence."
+	2: "{0} got greedy."
+	3: "{0} was consumed by their own magiks."
 }

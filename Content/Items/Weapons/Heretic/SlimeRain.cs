@@ -14,11 +14,8 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
     {
 
         private int lifeCost; // Add our custom resource cost
-        private string deathMessage;
-        private int messageHelper;
 
         public override string Texture => $"fourClassesMod/Sprites/Weapons/Slime_Rain";
-
         public override void SetDefaults()
         {
             Item.damage = 85;
@@ -46,7 +43,8 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
         {
             type = ModContent.ProjectileType<SlimeGunCloneStream>();
             Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
-            player.Hurt(PlayerDeathReason.ByCustomReason(NetworkText.FromKey(ModContent.GetInstance<DeathMessagesPlayer>().hereticDeathMessages)), lifeCost, 0, false, false, -1, false, 500, 500, 0f);
+
+            player.Hurt(player.DeathByLocalization("hereticDeathMessages." + Main.rand.Next(4)), lifeCost, 0, false, false, -1, false, 500, 500, 0f);
             return false;
         }
     }

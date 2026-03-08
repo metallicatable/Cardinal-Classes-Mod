@@ -14,7 +14,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
     {
 
         private int energyCost; // energy cost per right click
-        public override string Texture => $"Terraria/Images/Item_{ItemID.IronBroadsword}"; //for using vanilla sprites
+        public override string Texture => $"fourClassesMod/Sprites/Weapons/Spinespitter"; //for using vanilla sprites
         // public override string Texture => $"fourClassesMod/Sprites/Weapons/Dandelion_Swarm"; this is for a modded sprite, use the correct file path
         public override void SetDefaults()
         {
@@ -89,7 +89,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
     }
     
 
-    public class Spines : ModProjectile // add a projectile to this file for the weapon to fire
+    public class Spine : ModProjectile // add a projectile to this file for the weapon to fire
     {
         int energyGained = 1;
         public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.RollingCactusSpike}"; // why not
@@ -126,8 +126,8 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
         public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.RollingCactus}"; // why not
         int timer = 1; // timer used in the projectile AI
         int rotationHelper = 1;
-        Vector2 dustCircle = new Vector2(0, 32);
-        Vector2 dustVelocity = new Vector2(0, 0);
+        
+
 
         public override void SetDefaults()
         {
@@ -139,24 +139,22 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
             Projectile.timeLeft = 300; // ticks until despawn
             Projectile.usesLocalNPCImmunity = true; // uses local iframes
             Projectile.localNPCHitCooldown = -1; // -1 means each projectile can hit an enemy once only
+            Vector2 projectileVector = new Vector2(0, Projectile.width);
         }
 
 
 
         public override void AI() // called every frame
         {
-            dustCircle = Vector2.Zero.RotatedByRandom(MathHelper.ToRadians(180));
-            dustVelocity = dustCircle.RotatedBy(MathHelper.ToRadians(90));
+            Vector2 projectileVector = new Vector2(0, Projectile.width / 2);
+            projectileVector = projectileVector.RotatedBy(Projectile.rotation);
 
             if (timer % 3 == 0)
             {
                 rotationHelper++;
-            }
 
-               
-                
-            Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position, dustVelocity, ProjectileID.WoodenArrowFriendly, 10, 1f);
-                
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position + projectileVector, new Vector2(8, 0).RotatedBy(Projectile.rotation), ModContent.ProjectileType<Spine>(), 10, 1f);
+            }
 
             
             Projectile.rotation += MathHelper.ToRadians(rotationHelper);
