@@ -1,14 +1,22 @@
-﻿using fourClassesMod.Common.Classes.Druid;
+﻿using fourClassesMod.Common;
+using fourClassesMod.Common.Classes.Druid;
 using fourClassesMod.Content.Extras.Rarities;
 using Microsoft.Xna.Framework;
+using Mono.Cecil;
 using System.Threading;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Renderers;
 using Terraria.ID;
 using Terraria.ModLoader;
-using fourClassesMod.Common;
+/*
+    NOTES
+Create aura projectile when sprite and design is done.
+Change useStyle when main sprite is done.
+Stats, no balancing has been done.
 
+
+*/
 namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to find this file
 {
     internal class WintersWarmth : ModItem // tells the game that this is an item
@@ -19,10 +27,10 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
         // public override string Texture => $"fourClassesMod/Sprites/Weapons/Dandelion_Swarm"; this is for a modded sprite, use the correct file path
         public override void SetDefaults()
         {
-            Item.damage = 10;
+            Item.damage = 2;
             Item.knockBack = 4f;
             Item.useStyle = ItemUseStyleID.Swing; // handles anim
-            Item.useAnimation = 6; //keep useAnimation and useTime identical for most things, will cost clockwork assault rifle stuff if they arent the same
+            Item.useAnimation = 2; //keep useAnimation and useTime identical for most things, will cost clockwork assault rifle stuff if they arent the same
             Item.useTime = 2;
             Item.width = 32; //hitbox size for melee stuff
             Item.height = 32;
@@ -81,7 +89,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
         {
             CreateRecipe()
                 .AddIngredient(ItemID.FlinxFur, 5)
-             //   .AddIngredient<campfireGroup, 1>()
+                .AddRecipeGroup(RecipeGroupSystem.campfireGroup, 1)
                 .AddIngredient(ItemID.Silk, 8)
                 .AddTile(TileID.Loom)
                 .Register();
@@ -92,7 +100,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
 
     public class snowBallClone : ModProjectile
     {
-        int energyGained = 1;
+        int energyGained = 4;
         public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.SnowBallFriendly}";
 
 
@@ -117,7 +125,8 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            var energyPlayer = ModContent.GetInstance<EnergyPlayer>();
+            Player player = Main.player[Projectile.owner];
+            var energyPlayer = player.GetModPlayer<EnergyPlayer>();
 
             energyPlayer.EnergyCurrent += energyGained;
         }
@@ -127,47 +136,58 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
     {
         int timer = 0;
         public override string Texture => $"fourClassesMod/Sprites/Projectiles/campfireClone";
-
+        bool tileCollided = false;
         public override void SetDefaults()
         {
+            Projectile.width = 48;
+            Projectile.height = 40;
             Projectile.penetrate = -1;
             Projectile.friendly = false;
             Projectile.tileCollide = true;
-
+            Projectile.scale = 0.5f;
         }
-        private NPC HomingTarget
-        {
-            get => Projectile.ai[0] == 0 ? null : Main.npc[(int)Projectile.ai[0] - 1];
 
-            set
-            {
-                Projectile.ai[0] = value == null ? 0 : value.whoAmI + 1;
-            }
+        public override void SetStaticDefaults()
+        {
+            // Total count animation frames
+            Main.projFrames[Type] = 8;
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             Projectile.velocity = new Vector2(0, 0);
+            tileCollided = true;
             return false;
         }
 
+
         public override void AI()
         {
-            Projectile.velocity.Y += 0.3f; // gravity
+            
+            Lighting.AddLight(Projectile.Center, 1f, 0.5f, 0.05f);
+            if (!tileCollided)
+            {
+                Projectile.velocity.Y += 0.25f; // gravity
+            }
+           
             int effectRadius = 300;
             Player player = Main.player[Projectile.owner];
-
-
-            if (Projectile.velocity.Y > 16f)
+            if (timer % 3 == 0)
             {
-                Projectile.velocity.Y = 16f;
+                Vector2 perturbedPosition = new Vector2(Projectile.position.X + 24, Projectile.position.Y);
+                Dust.NewDust(perturbedPosition, 48, 16, DustID.Smoke, 0, -0.25f, 100, default, 1f);
             }
 
-            if (timer % 30 == 0)
+            if (++Projectile.frameCounter >= 5)
             {
-                if (player.position.X - Projectile.position.X <= effectRadius && player.position.Y - Projectile.position.Y <= effectRadius)
+                Projectile.frameCounter = 0;
+                // Or more compactly Projectile.frame = ++Projectile.frame % Main.projFrames[Type];
+                if (++Projectile.frame >= Main.projFrames[Type])
+                    Projectile.frame = 0;
+
+                if (Projectile.velocity.Y > 16f)
                 {
-                    player.Heal(1);
+                    Projectile.velocity.Y = 16f;
                 }
 
                 foreach (var target in Main.ActiveNPCs)
@@ -187,14 +207,21 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
                     }
                 }
 
-            }
+                if (timer % 30 == 0)
+                {
+                    if (player.position.X - Projectile.position.X <= effectRadius && player.position.Y - Projectile.position.Y <= effectRadius)
+                    {
+                        player.Heal(1);
+                    }
+                }
 
-            if (timer > 300)
-            {
-                Projectile.Kill();
-            }
+                if (timer > 300)
+                {
+                    Projectile.Kill();
+                }
 
-            timer++;
+                timer++;
+            }
         }
 
         public bool IsValidTarget(NPC target)
@@ -211,4 +238,6 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
         }
     }
 
+    
+    
 }
