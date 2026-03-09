@@ -15,7 +15,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
 
         private int lifeCost; // Add our custom resource cost 
 
-        public override string Texture => $"fourClassesMod/Sprites/Weapons/Slime_Rain";
+        public override string Texture => $"fourClassesMod/Sprites/Weapons/Tainted_Scroll";
 
         public override void SetDefaults()
         {
