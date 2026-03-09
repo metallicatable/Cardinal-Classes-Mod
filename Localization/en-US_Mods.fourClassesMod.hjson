@@ -178,6 +178,7 @@ Projectiles: {
 	Spine.DisplayName: Spine
 	campfireProjectile.DisplayName: campfire Projectile
 	snowBallClone.DisplayName: snow Ball Clone
+	campfireAura.DisplayName: campfire Aura
 }
 
 Buffs: {

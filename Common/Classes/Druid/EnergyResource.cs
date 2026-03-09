@@ -12,7 +12,7 @@ namespace fourClassesMod.Common.Classes.Druid
         // Here we create a custom resource, similar to mana or health.
         // Creating some variables to define the current value of our Cultist resource as well as the current maximum value. We also include a temporary max value, as well as some variables to handle the natural regeneration of this resource.
         public int EnergyCurrent; // Current value of our Cultist resource
-        public const int DefaultEnergyMax = 300; // Default maximum value of Cultist resource
+        public const int DefaultEnergyMax = 3000; // Default maximum value of energy resource
         public int EnergyMax; // Buffer variable that is used to reset maximum resource to default value in ResetDefaults().
         public int EnergyMax2; // Maximum amount of our Cultist resource. We will change that variable to increase maximum amount of our resource
         public bool EnergyMagnet = false;

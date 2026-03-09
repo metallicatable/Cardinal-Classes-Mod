@@ -164,11 +164,12 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
             return lightColor;
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) // add energy to on hits
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            var energyPlayer = ModContent.GetInstance<EnergyPlayer>();
-            energyPlayer.energyGain += energyGained;
+            Player player = Main.player[Projectile.owner];
+            var energyPlayer = player.GetModPlayer<EnergyPlayer>();
 
+            energyPlayer.EnergyCurrent += energyGained;
         }
     }
 

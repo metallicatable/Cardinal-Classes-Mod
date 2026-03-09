@@ -109,11 +109,12 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
             Projectile.localNPCHitCooldown = -1; // -1 means each projectile can hit an enemy once only
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) // add energy to on hits
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            var energyPlayer = ModContent.GetInstance<EnergyPlayer>();
-            energyPlayer.energyGain += energyGained;
+            Player player = Main.player[Projectile.owner];
+            var energyPlayer = player.GetModPlayer<EnergyPlayer>();
 
+            energyPlayer.EnergyCurrent += energyGained;
         }
 
         public override void AI() // called every frame
