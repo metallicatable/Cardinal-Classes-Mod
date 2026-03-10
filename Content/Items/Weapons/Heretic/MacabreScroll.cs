@@ -56,10 +56,11 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.EbonstoneBlock, 40)
-                .AddIngredient(ItemID.Silk, 8)
-                .AddTile(TileID.Loom)
-                .Register();
+                .AddIngredient(ItemID.CrimstoneBlock, 40) 
+                .AddIngredient(ItemID.Silk, 8) 
+                .AddIngredient(ItemID.CrimtaneBar, 6) 
+                .AddTile(TileID.Loom) 
+                .Register(); 
         }
     }
 }
