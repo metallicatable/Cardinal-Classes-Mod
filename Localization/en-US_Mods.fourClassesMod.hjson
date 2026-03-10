@@ -98,7 +98,7 @@ Items: {
 	}
 
 	DruidItemName: {
-		DisplayName: Druid Item Name
+		DisplayName: You Shouldn't Have This
 		Tooltip: ""
 	}
 
@@ -118,8 +118,8 @@ Items: {
 	}
 
 	ShurikenBundle: {
-		Tooltip: ""
 		DisplayName: Shuriken Bundle
+		Tooltip: ""
 	}
 
 	WintersWarmth: {

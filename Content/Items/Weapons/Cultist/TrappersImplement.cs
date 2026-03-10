@@ -13,7 +13,7 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
 
         private int faithCost; // Add our custom resource cost
 
-        public override string Texture => $"fourClassesMod/Sprites/Weapons/Slime_Rain";
+        public override string Texture => $"fourClassesMod/Sprites/Weapons/SlimeRain";
 
         public override void SetDefaults()
         {

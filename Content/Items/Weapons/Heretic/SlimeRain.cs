@@ -12,7 +12,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
 {
     internal class SlimeRain : ModItem
     {
-        public override string Texture => $"fourClassesMod/Sprites/Weapons/SlimeRain";
+        public override string Texture => "fourClassesMod/Sprites/Weapons/SlimeRain";
         public override void SetDefaults()
         {
             Item.damage = 85;

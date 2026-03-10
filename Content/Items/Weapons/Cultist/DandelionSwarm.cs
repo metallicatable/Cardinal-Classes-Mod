@@ -11,7 +11,7 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
 
         private int faithCost; // Add our custom resource cost
 
-        public override string Texture => $"fourClassesMod/Sprites/Weapons/Dandelion_Swarm";
+        public override string Texture => $"fourClassesMod/Sprites/Weapons/DandelionSwarm";
 
         public override void SetDefaults()
         {
