@@ -1,4 +1,4 @@
-﻿using fourClassesMod.Common; 
+using fourClassesMod.Common; 
 using fourClassesMod.Common.Classes.Heretic; 
 using Microsoft.Xna.Framework; 
 using Steamworks; 
@@ -12,7 +12,8 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
 {
     internal class MacabreScroll : ModItem
     {
-        public override string Texture => $"fourClassesMod/Sprites/Weapons/Slime_Rain";
+
+        public override string Texture => $"fourClassesMod/Sprites/Weapons/MacabreScroll";
 
         public override void SetDefaults()
         {

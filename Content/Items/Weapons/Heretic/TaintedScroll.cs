@@ -13,7 +13,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
     internal class TaintedScroll : ModItem
     { 
 
-        public override string Texture => $"fourClassesMod/Sprites/Weapons/Slime_Rain";
+        public override string Texture => $"fourClassesMod/Sprites/Weapons/Tainted_Scroll";
 
         public override void SetDefaults()
         {
