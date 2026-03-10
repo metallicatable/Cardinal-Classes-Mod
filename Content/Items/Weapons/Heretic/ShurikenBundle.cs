@@ -15,7 +15,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
     {
 
 
-        public override string Texture => $"fourClassesMod/Sprites/Weapons/Shuriken_Bundle"; 
+        public override string Texture => $"fourClassesMod/Sprites/Weapons/ShurikenBundle"; 
 
         public override void SetDefaults()
         {
