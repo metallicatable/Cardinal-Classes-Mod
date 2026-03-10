@@ -14,7 +14,6 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
     internal class ShurikenBundle : ModItem
     {
 
-        private int lifeCost; // Add our custom resource cost 
 
         public override string Texture => $"fourClassesMod/Sprites/Weapons/Shuriken_Bundle"; 
 
@@ -30,7 +29,6 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
             Item.UseSound = SoundID.Item1;
             Item.DamageType = ModContent.GetInstance<HereticDamageClass>();
             Item.noMelee = true; // The projectile will do the damage and not the item 
-            lifeCost = 5;
             Item.rare = ItemRarityID.White;
             Item.shoot = ProjectileID.PurificationPowder;
 
@@ -45,7 +43,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
             float numberProjectiles = 5;
             float rotation = MathHelper.ToRadians(0); 
             type = ProjectileID.Shuriken;
-            player.Hurt(player.DeathByLocalization("hereticDeathMessages." + Main.rand.Next(4)), lifeCost, 0, false, false, -1, false, 500, 500, 0f);
+            HereticResourceHandler.hereticBleeds(player, 5f);
 
 
             position += Vector2.Normalize(velocity) * 45f; 

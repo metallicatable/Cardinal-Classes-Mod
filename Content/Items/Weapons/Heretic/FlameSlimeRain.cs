@@ -12,8 +12,6 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
 {
     internal class FlamingSlimeRain : ModItem
     {
-
-        private int lifeCost;
         public override string Texture => $"Terraria/Images/Item_{ItemID.PalmWoodDoor}";
 
         public override void SetDefaults()
@@ -29,7 +27,6 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
             Item.DamageType = ModContent.GetInstance<HereticDamageClass>();
             Item.autoReuse = false;
             Item.noMelee = true; // The projectile will do the damage and not the item
-            lifeCost = 50;
             Item.rare = ItemRarityID.White;
             Item.shoot = ProjectileID.PurificationPowder;
 
@@ -44,7 +41,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
             type = ModContent.ProjectileType<flamingSlimeGunCloneStream>();
             Projectile.NewProjectile(source, position, velocity, type, damage, knockback);
 
-            player.Hurt(player.DeathByLocalization("hereticDeathMessages." + Main.rand.Next(4)), lifeCost, 0, false, false, -1, false, 500, 500, 0f);
+            HereticResourceHandler.hereticBleeds(player, 50f);
             return false;
         }
     }

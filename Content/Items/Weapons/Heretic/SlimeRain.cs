@@ -12,9 +12,6 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
 {
     internal class SlimeRain : ModItem
     {
-
-        private int lifeCost; // Add our custom resource cost
-
         public override string Texture => $"fourClassesMod/Sprites/Weapons/Slime_Rain";
         public override void SetDefaults()
         {
@@ -29,7 +26,6 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
             Item.DamageType = ModContent.GetInstance<HereticDamageClass>();
             Item.autoReuse = false;
             Item.noMelee = true; // The projectile will do the damage and not the item
-            lifeCost = 50;
             Item.rare = ItemRarityID.White;
             Item.shoot = ProjectileID.PurificationPowder;
 
@@ -44,7 +40,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
             type = ModContent.ProjectileType<SlimeGunCloneStream>();
             Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
 
-            player.Hurt(player.DeathByLocalization("hereticDeathMessages." + Main.rand.Next(4)), lifeCost, 0, false, false, -1, false, 500, 500, 0f);
+            HereticResourceHandler.hereticBleeds(player, 50f);
             return false;
         }
     }

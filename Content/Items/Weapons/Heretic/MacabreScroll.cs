@@ -1,4 +1,5 @@
-﻿using fourClassesMod.Common.Classes.Heretic; 
+﻿using fourClassesMod.Common; 
+using fourClassesMod.Common.Classes.Heretic; 
 using Microsoft.Xna.Framework; 
 using Steamworks; 
 using Terraria; 
@@ -6,15 +7,11 @@ using Terraria.DataStructures;
 using Terraria.ID; 
 using Terraria.Localization; 
 using Terraria.ModLoader; 
-using fourClassesMod.Common; 
  
 namespace fourClassesMod.Content.Items.Weapons.Heretic 
 {
     internal class MacabreScroll : ModItem
     {
-
-        private int lifeCost; // Add our custom resource cost 
-
         public override string Texture => $"fourClassesMod/Sprites/Weapons/Slime_Rain";
 
         public override void SetDefaults()
@@ -29,7 +26,6 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
             Item.UseSound = SoundID.Item1;
             Item.DamageType = ModContent.GetInstance<HereticDamageClass>();
             Item.noMelee = true; // The projectile will do the damage and not the item 
-            lifeCost = 5;
             Item.rare = ItemRarityID.White;
             Item.shoot = ProjectileID.PurificationPowder;
 
@@ -52,7 +48,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
                 Projectile.NewProjectile(source, position, perturbedSpeed, type, damage, knockback, player.whoAmI);
             }
 
-            player.Hurt(player.DeathByLocalization("hereticDeathMessages." + Main.rand.Next(4)), lifeCost, 0, false, false, -1, false, 500, 500, 0f);
+            HereticResourceHandler.hereticBleeds(player, 5f);
             return false; // return false to stop vanilla from calling Projectile.NewProjectile.
         }
 
