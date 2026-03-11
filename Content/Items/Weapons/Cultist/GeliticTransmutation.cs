@@ -69,6 +69,7 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
 
             Projectile.penetrate += 50;
             Projectile.timeLeft = 120;
+            Projectile.DamageType = ModContent.GetInstance<CultistDamageClass>();
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -108,6 +109,7 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
             Projectile.alpha = 255;
             Projectile.friendly = true;
             Projectile.hostile = false;
+            Projectile.DamageType = ModContent.GetInstance<CultistDamageClass>();
         }
 
 

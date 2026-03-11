@@ -10,10 +10,8 @@ using Terraria.ModLoader;
 
 namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to find this file
 {
-    internal class DruidItemName : ModItem // tells the game that this is an item
+    internal class DruidItemName : DruidWeapon // tells the game that this is an item
     {
-
-        private int energyCost; // energy cost per right click
         public override string Texture => $"Terraria/Images/Item_{ItemID.IronBroadsword}"; //for using vanilla sprites
         // public override string Texture => $"fourClassesMod/Sprites/Weapons/Dandelion_Swarm"; this is for a modded sprite, use the correct file path
         public override void SetDefaults()
@@ -36,11 +34,6 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
             Item.shootSpeed = 8f; // affects Projectile.velocity
         }
 
-        public override bool AltFunctionUse(Player player) 
-        {
-            return true; // allows right click to have functionality
-        }
-
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         { // overrides the shoot command to have different effects for left and right click, as well as allowing energy to work as intended.
 
@@ -56,9 +49,9 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
                         perturbedVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(10)); // random rotation, 10 degrees total i think (5 up, 5 down)
                         perturbedVelocity *= Main.rand.NextFloat(0.25f, 5f);  // randomize velocity, at minimum 25% of base speed and maximum 5 times base speed
                         type = ModContent.ProjectileType<burstFireball>(); // change projectile type from purification powder to the modded burstFireball
-                        damage *= 2; // double the damage listed in SetDefaults()
+                        //damage *= 2; // double the damage listed in SetDefaults()
 
-                        Projectile.NewProjectile(source, position, perturbedVelocity, type, damage, knockback, player.whoAmI);
+                        EnergyAttack(player, source, position, perturbedVelocity, type, damage * 2, knockback);
                     } // ^ create projectile with the parameters in the brackets
 
                     energyPlayer.EnergyCurrent -= energyCost; // lower energy after using big attacl
@@ -76,7 +69,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
                 perturbedVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(5)); // This adds a random spread to the projectiles, 5 degrees in either direction.
                 perturbedVelocity *= 2f + Main.rand.NextFloat(-0.5f, 0.5f); // randomizes velocity by at minumum 1.5x and maximum 2.5x
 
-                Projectile.NewProjectile(source, position, perturbedVelocity, type, damage, knockback, player.whoAmI); // create the projectile
+                FastAttack(player, source, position, perturbedVelocity, type, damage, knockback); // create the projectile
                 return false; // tell the game not to create the projectile itself, as we just did
             }               
         }

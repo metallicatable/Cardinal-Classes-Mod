@@ -8,9 +8,6 @@
 		
 	</PropertyGroup>
 	<ItemGroup>
-	  <Compile Remove="Content\Items\Weapons\Cultist\GeliticTransmutation.cs" />
-	</ItemGroup>
-	<ItemGroup>
 	  <Folder Include="Sprites\Gradients\" />
 	</ItemGroup>
 
