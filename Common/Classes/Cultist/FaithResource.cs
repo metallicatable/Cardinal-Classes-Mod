@@ -13,12 +13,14 @@ namespace fourClassesMod.Common.Classes.Cultist
         // Here we create a custom resource, similar to mana or health.
         // Creating some variables to define the current value of our Cultist resource as well as the current maximum value. We also include a temporary max value, as well as some variables to handle the natural regeneration of this resource.
         public int FaithCurrent; // Current value of our Cultist resource
-        public const int DefaultFaithMax = 75; // Default maximum value of Cultist resource
+        public const int DefaultFaithMax = 100; // Default maximum value of Cultist resource
         public int FaithMax; // Buffer variable that is used to reset maximum resource to default value in ResetDefaults().
         public int FaithMax2; // Maximum amount of our Cultist resource. We will change that variable to increase maximum amount of our resource
         public float FaithRegenRate; // By changing that variable we can increase/decrease regeneration rate of our resource
         internal int FaithRegenTimer = 0; // A variable that is required for our timer
         public bool FaithMagnet = false;
+        public float energyAttackBoost = 0f;
+        public int energyAttackFlat = 0;
         public static readonly int FaithMagnetGrabRange = 300;
         public static readonly Color HealFaithColor = new(255, 215, 0); // The color to use with CombatText when replenishing FaithCurrent
 
@@ -45,7 +47,7 @@ namespace fourClassesMod.Common.Classes.Cultist
         // We need this to ensure that regeneration rate and maximum amount are reset to default values after increasing when conditions are no longer satisfied (e.g. we unequip an accessory that increases our resource)
         private void ResetVariables()
         {
-            FaithRegenRate = 1f;
+            FaithRegenRate = 1.25f;
             FaithMax2 = FaithMax;
             FaithMagnet = false;
         }
@@ -74,7 +76,7 @@ namespace fourClassesMod.Common.Classes.Cultist
                 FaithRegenTimer++; // Increase it by 60 per second, or 1 per tick.
 
             // A simple timer that goes up to 1 second, increases the FaithCurrent by 1 and then resets back to 0.
-            if (FaithRegenTimer > 6 / FaithRegenRate && Main.LocalPlayer.HeldItem.DamageType == ModContent.GetInstance<CultistDamageClass>())
+            if (FaithRegenTimer > 6 / FaithRegenRate /*&& Main.LocalPlayer.HeldItem.DamageType == ModContent.GetInstance<CultistDamageClass>()*/)
             {
                 FaithCurrent += 1;
                 FaithRegenTimer = 0;

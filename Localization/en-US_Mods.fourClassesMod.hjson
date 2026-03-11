@@ -123,7 +123,12 @@ Items: {
 	}
 
 	WintersWarmth: {
-		DisplayName: Winters Warmth
+		DisplayName: Winter's Warmth
+		Tooltip: ""
+	}
+
+	DruidWeapon: {
+		DisplayName: Druid Weapon
 		Tooltip: ""
 	}
 }
@@ -139,6 +144,8 @@ DamageClasses: {
 	BarbarianDamageClass.DisplayName: barbaric damage
 	CultistDamageClass.DisplayName: cultic damage
 	DruidDamageClass.DisplayName: druidic damage
+	CultistFaithClass.DisplayName: Cultist Faith Class
+	DruidEnergyClass.DisplayName: Druid Energy Class
 }
 
 Projectiles: {
@@ -179,6 +186,8 @@ Projectiles: {
 	campfireProjectile.DisplayName: campfire Projectile
 	snowBallClone.DisplayName: snow Ball Clone
 	campfireAura.DisplayName: campfire Aura
+	SpineBall.DisplayName: Spine Ball
+	DruidProjectile.DisplayName: Druid Projectile
 }
 
 Buffs: {

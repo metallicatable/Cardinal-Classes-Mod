@@ -1,6 +1,7 @@
 ﻿using fourClassesMod.Common.Classes.Cultist;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -32,9 +33,8 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
 
             Item.shootSpeed = 8f; // This value bleeds into the behavior of the projectile as velocity, keep that in mind when tweaking values
         }
-
-
-        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             var faithPlayer = player.GetModPlayer<FaithPlayer>();
 
@@ -44,16 +44,19 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
                 velocity.Y = 0;
                 type = ModContent.ProjectileType<ChargedDandelionSwarmSeeds>();
                 faithPlayer.FaithCurrent -= faithCost;
-
+                Projectile.NewProjectile(source, position, velocity, type, damage, knockback);
             }
             else
             {
                 position = player.position;
                 type = ModContent.ProjectileType<DandelionSwarmSeeds>();
                 damage -= 6; // calculate weaker form
+                Projectile.NewProjectile(source, position, velocity, type, damage, knockback);
 
             }
+            return false;
         }
+        
     }
 
     public class DandelionSwarmSeeds : ModProjectile
@@ -83,6 +86,7 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
             Projectile.penetrate += 3;
             Projectile.tileCollide = true;
             Projectile.alpha = 0;
+            Projectile.DamageType = ModContent.GetInstance<CultistDamageClass>();
 
         }
 
@@ -182,21 +186,18 @@ namespace fourClassesMod.Content.Items.Weapons.Cultist
 
         public override void SetDefaults()
         {
-            // This method right here is the backbone of what we're doing here; by using this method, we copy all of
-            // the Meowmere Projectile's SetDefault stats (such as projectile.friendly and projectile.penetrate) on to our projectile,
-            // so we don't have to go into the source and copy the stats ourselves. It saves a lot of time and looks much cleaner;
-            // if you're going to copy the stats of a projectile, use CloneDefaults().
+            Projectile.height = 16;
+            Projectile.width = 16;
+
             AIType = ProjectileID.DandelionSeed;
             Projectile.friendly = true;
-            // To further the Cloning process, we can also copy the ai of any given projectile using AIType, since we want
-            // the projectile to essentially behave the same way as the vanilla projectile.
-            // After CloneDefaults has been called, we can now modify the stats to our wishes, or keep them as they are.
-            // For the sake of Cultist, lets make our projectile penetrate enemies a few more times than the vanilla projectile.
-            // This can be done by modifying projectile.penetrate
+
             Projectile.penetrate += 3;
             Projectile.tileCollide = false;
             Projectile.alpha = 0;
             Projectile.knockBack = 2f;
+            Projectile.localNPCHitCooldown = -1;
+            Projectile.usesLocalNPCImmunity = true;
         }
 
         public override Color? GetAlpha(Color lightColor)

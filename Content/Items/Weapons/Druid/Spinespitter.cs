@@ -10,10 +10,9 @@ using Terraria.ModLoader;
 
 namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to find this file
 {
-    internal class Spinespitter : ModItem // tells the game that this is an item
+    internal class Spinespitter : DruidWeapon // tells the game that this is an item
     {
 
-        private int energyCost; // energy cost per right click
         public override string Texture => $"fourClassesMod/Sprites/Weapons/Spinespitter"; //for using vanilla sprites
         // public override string Texture => $"fourClassesMod/Sprites/Weapons/Dandelion_Swarm"; this is for a modded sprite, use the correct file path
         public override void SetDefaults()
@@ -30,51 +29,11 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
             Item.noMelee = true; // The projectile will do the damage and not the item
             energyCost = 100;
             Item.rare = ItemRarityID.White; //rarity
-            // Item.rare = ModContent.RarityType<lunarBlue>();    for modded rarities
             Item.shoot = ProjectileID.PurificationPowder; // keep as purification powder always, to stay consistent
 
             Item.shootSpeed = 12f; // affects Projectile.velocity
+
         }
-
-        public override bool AltFunctionUse(Player player) 
-        {
-            return true; // allows right click to have functionality
-        }
-
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        { // overrides the shoot command to have different effects for left and right click, as well as allowing energy to work as intended.
-
-            var energyPlayer = player.GetModPlayer<EnergyPlayer>(); // creates a variable based on the EnergyPlayer in common/druid so that energy can be influenced 
-            Vector2 perturbedVelocity; // new variable we can use to edit velocity without breaking the game
-
-            if (player.altFunctionUse == 2) // if player is right-clicking
-            {
-                if (energyPlayer.EnergyCurrent >= energyCost) // if player has enough energy
-                {
-                    type = ModContent.ProjectileType<SpinesBall>(); // change projectile type from purification powder to the modded burstFireball
-
-                    Projectile.NewProjectile(source, position, velocity / 2, type, 0, knockback, player.whoAmI);
-
-                    energyPlayer.EnergyCurrent -= energyCost; // lower energy after using big attacl
-                    return false; // tell the game to not use the vanilla shoot behaviour so ours can run instead
-                }
-                else
-                {
-                    return false; // functionality for when the weapon is right clicked but not enough energy is present
-                }
-            }
-            else // what to do when left clicked
-            {
-                type = ModContent.ProjectileType<Spine>(); // fires wooden arrows when left clicks
-
-                perturbedVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(5)); // This adds a random spread to the projectiles, 5 degrees in either direction.
-                perturbedVelocity *= 2f + Main.rand.NextFloat(-0.5f, 0.5f); // randomizes velocity by at minumum 1.5x and maximum 2.5x
-
-                Projectile.NewProjectile(source, position, perturbedVelocity, type, damage, knockback, player.whoAmI); // create the projectile
-                return false; // tell the game not to create the projectile itself, as we just did
-            }               
-        }
-
         
         public override void AddRecipes()     // creates the recipe, which is commented out as this weapon should not be obtainable and therefore has no recipe
         {
@@ -130,7 +89,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
         }
     }
 
-    public class SpinesBall : ModProjectile // add a projectile to this file for the weapon to fire
+    public class SpineBall : ModProjectile // add a projectile to this file for the weapon to fire
     {
         public override string Texture => "fourClassesMod/Sprites/Projectiles/SpineBall"; // why not
         int timer = 1; // timer used in the projectile AI

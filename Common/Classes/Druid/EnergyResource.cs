@@ -9,8 +9,7 @@ namespace fourClassesMod.Common.Classes.Druid
 {
     public class EnergyPlayer : ModPlayer
     {
-        // Here we create a custom resource, similar to mana or health.
-        // Creating some variables to define the current value of our Cultist resource as well as the current maximum value. We also include a temporary max value, as well as some variables to handle the natural regeneration of this resource.
+        
         public int EnergyCurrent; // Current value of our Cultist resource
         public const int DefaultEnergyMax = 3000; // Default maximum value of energy resource
         public int EnergyMax; // Buffer variable that is used to reset maximum resource to default value in ResetDefaults().
@@ -18,7 +17,11 @@ namespace fourClassesMod.Common.Classes.Druid
         public bool EnergyMagnet = false;
         public static readonly int EnergyMagnetGrabRange = 300;
         public static readonly Color HealEnergyColor = new(255, 215, 0); // The color to use with CombatText when replenishing EnergyCurrent
-        public int energyGain = 1;
+
+        public float energyAttackBoost = 1f;
+        public int energyAttackFlat = 0;
+        public float fastAttackBoost = 1f;
+        public int fastAttackFlat = 0;
 
         // In order to make the Cultist Resource Cultist straightforward, several things have been left out that would be needed for a fully functional resource similar to mana and health. 
         // Here are additional things you might need to implement if you intend to make a custom resource:

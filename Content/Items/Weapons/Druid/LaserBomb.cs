@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace fourClassesMod.Content.Items.Weapons.Druid
 {
-    internal class laserBomb : ModItem
+    internal class laserBomb : DruidWeapon
     {
         
         private int energyCost; // Add our custom resource cost
@@ -53,7 +53,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
                     type = ProjectileID.Bananarang;
                     energyPlayer.EnergyCurrent -= energyCost;
                     damage *= 2; ; // Optional: Increase damage for the alternate function
-                    Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
+                    EnergyAttack(player, source, position, velocity, type, damage, knockback);
                     return false;
 
                 }
@@ -71,7 +71,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
                     perturbedVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(5)); // This adds a random spread to the projectiles, 10 degrees in either direction.
                     perturbedVelocity *= 2f + Main.rand.NextFloat(0.5f, 2f);
 
-                    Projectile.NewProjectile(source, position, perturbedVelocity, type, damage, knockback, player.whoAmI);
+                    FastAttack(player, source, position, perturbedVelocity, type, damage, knockback, player.whoAmI);
                     return false;
                 }
 
@@ -82,7 +82,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
                     perturbedVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(5));
                     perturbedVelocity *= 2f + Main.rand.NextFloat(0.5f, 2f);
 
-                    Projectile.NewProjectile(source, position, perturbedVelocity, type, damage, knockback, player.whoAmI);
+                    FastAttack(player, source, position, perturbedVelocity, type, damage, knockback, player.whoAmI);
                     return false;
                 }
             }
@@ -91,9 +91,8 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
         }
     }
 
-    public class laserCloneProjectile : ModProjectile
+    public class laserCloneProjectile : DruidProjectile
     {
-        int energyGained = 1;
         public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.PurpleLaser}";
         public override void SetDefaults()
         {
@@ -103,7 +102,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
             Projectile.DamageType = ModContent.GetInstance<DruidDamageClass>();
             Projectile.penetrate = 1; // This makes the projectile disappear after hitting an enemy once
             Projectile.timeLeft = 600; // The projectile will last for 10 seconds if it doesn't hit anything
-
+            energyGain = 1;
         }
 
         public override void AI()
@@ -119,20 +118,11 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
             return lightColor;
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            Player player = Main.player[Projectile.owner];
-            var energyPlayer = player.GetModPlayer<EnergyPlayer>();
-
-            energyPlayer.EnergyCurrent += energyGained;
-        }
-
 
     }
 
-    public class laserCloneProjectile2 : ModProjectile
+    public class laserCloneProjectile2 : DruidProjectile
     {
-        int energyGained = 1;
         public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.PurpleLaser}";
         public override void SetDefaults()
         {
@@ -142,28 +132,20 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
             Projectile.DamageType = ModContent.GetInstance<DruidDamageClass>();
             Projectile.penetrate = 1; // This makes the projectile disappear after hitting an enemy once
             Projectile.timeLeft = 600; // The projectile will last for 10 seconds if it doesn't hit anything
-
+            energyGain = 1;
         }
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.Center, Color.Red.ToVector3()); // This makes the projectile emit purple light
+            Lighting.AddLight(Projectile.Center, Color.Red.ToVector3());
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
         }
-        
+
         public override Color? GetAlpha(Color lightColor)
         {
             lightColor = Color.Red;
             lightColor.A = 50;
             return lightColor;
-        }
-
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            Player player = Main.player[Projectile.owner];
-            var energyPlayer = player.GetModPlayer<EnergyPlayer>();
-
-            energyPlayer.EnergyCurrent += energyGained;
         }
 
     }
