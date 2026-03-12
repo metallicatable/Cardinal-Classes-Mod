@@ -15,28 +15,15 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
 {
     public class HereticWeapon : ModItem
     {
-        public virtual float lifeCost => lifeCostBase;
-        internal float lifeCostBase = 1f;
-        public float lifeCostReforge;
+        public virtual int lifeCost => 0;
+
         public override string Texture => $"Terraria/Images/Item_{ItemID.IronBroadsword}";
 
         public override bool WeaponPrefix() => true;
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        public override void UseAnimation(Player player)
         {
             HereticResourceHandler.HereticBleeds(player, lifeCost);
-            return true;
         }
-
-        public override void PreReforge()
-        {
-            lifeCostBase = 1f;
-        }
-
-        public override void PostReforge()
-        {
-            base.PostReforge();
-        }
-
     }
 }

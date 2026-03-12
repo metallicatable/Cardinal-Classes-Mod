@@ -156,6 +156,16 @@ Items: {
 		DisplayName: Heretic Weapon
 		Tooltip: ""
 	}
+
+	Test: {
+		DisplayName: Test
+		Tooltip: Reduces life cost of heretic weapons by 1
+	}
+
+	BloodsoakedMedallion: {
+		DisplayName: Bloodsoaked Medallion
+		Tooltip: ""
+	}
 }
 
 UI: {
@@ -230,12 +240,12 @@ hereticDeathMessages: {
 }
 
 Prefixes: {
-	PowerTooltip: kabosh
-
-	HereticPrefix: {
-		AdditionalTooltip: ?
-		DisplayName: Heretic Prefix
-	}
-
+	HereticPrefix.DisplayName: Heretic Prefix
 	LifeCostDescription: life cost
+	DoubleEdged.DisplayName: Double Edged
+	Draining.DisplayName: Draining
+	Painful.DisplayName: Painful
+	Rending.DisplayName: Rending
+	Safe.DisplayName: Safe
+	Visceral.DisplayName: Visceral
 }

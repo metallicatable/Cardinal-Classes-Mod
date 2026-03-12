@@ -33,7 +33,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
             Item.shootSpeed = 8f; // This value bleeds into the behavior of the projectile as velocity, keep that in mind when tweaking values 
         }
 
-        public override float lifeCost => base.lifeCost + 5f;
+        public override int lifeCost => 5;
 
         // Make sure you can't use the item if you don't have enough resource 
 

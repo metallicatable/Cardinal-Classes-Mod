@@ -35,7 +35,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
 
         // Make sure you can't use the item if you don't have enough resource
 
-        public override float lifeCost => base.lifeCost + 50f;
+        public override int lifeCost => 50;
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {

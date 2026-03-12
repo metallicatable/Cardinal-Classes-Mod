@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace fourClassesMod.Content.Items.Accessories
+namespace fourClassesMod.Content.Items.Accessories.Heretic
 {
     internal class HateRing : ModItem
     {

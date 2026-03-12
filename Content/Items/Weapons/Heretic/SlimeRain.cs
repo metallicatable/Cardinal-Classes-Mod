@@ -33,7 +33,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
             Item.shootSpeed = 8f; // This value bleeds into the behavior of the projectile as velocity, keep that in mind when tweaking values
         }
 
-        public override float lifeCost => base.lifeCost + 50f;
+        public override int lifeCost => 50;
         // Make sure you can't use the item if you don't have enough resource
 
 
@@ -42,7 +42,6 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
             type = ModContent.ProjectileType<SlimeGunCloneStream>();
             Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
 
-            HereticResourceHandler.HereticBleeds(player, lifeCost);
             return false;
         }
     }
