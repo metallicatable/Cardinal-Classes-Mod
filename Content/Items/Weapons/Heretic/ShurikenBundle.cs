@@ -43,7 +43,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
             float numberProjectiles = 5;
             float rotation = MathHelper.ToRadians(0); 
             type = ProjectileID.Shuriken;
-            HereticResourceHandler.hereticBleeds(player, 5f);
+            HereticResourceHandler.HereticBleeds(player, 5f);
 
 
             position += Vector2.Normalize(velocity) * 45f; 

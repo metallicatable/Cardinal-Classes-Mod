@@ -17,6 +17,7 @@ namespace fourClassesMod.Common.Classes.Druid
         public bool EnergyMagnet = false;
         public static readonly int EnergyMagnetGrabRange = 300;
         public static readonly Color HealEnergyColor = new(255, 215, 0); // The color to use with CombatText when replenishing EnergyCurrent
+        public bool canRegenEnergy = true;
 
         public float energyAttackBoost = 1f;
         public int energyAttackFlat = 0;

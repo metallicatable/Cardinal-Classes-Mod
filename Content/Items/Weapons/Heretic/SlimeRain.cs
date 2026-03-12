@@ -10,9 +10,10 @@ using fourClassesMod.Common;
 
 namespace fourClassesMod.Content.Items.Weapons.Heretic
 {
-    internal class SlimeRain : ModItem
+    internal class SlimeRain : HereticWeapon
     {
         public override string Texture => "fourClassesMod/Sprites/Weapons/SlimeRain";
+ 
         public override void SetDefaults()
         {
             Item.damage = 85;
@@ -32,6 +33,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
             Item.shootSpeed = 8f; // This value bleeds into the behavior of the projectile as velocity, keep that in mind when tweaking values
         }
 
+        public override float lifeCost => base.lifeCost + 50f;
         // Make sure you can't use the item if you don't have enough resource
 
 
@@ -40,7 +42,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
             type = ModContent.ProjectileType<SlimeGunCloneStream>();
             Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
 
-            HereticResourceHandler.hereticBleeds(player, 50f);
+            HereticResourceHandler.HereticBleeds(player, lifeCost);
             return false;
         }
     }

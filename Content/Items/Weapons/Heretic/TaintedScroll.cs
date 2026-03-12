@@ -10,7 +10,7 @@ using fourClassesMod.Common;
  
 namespace fourClassesMod.Content.Items.Weapons.Heretic 
 {
-    internal class TaintedScroll : ModItem
+    internal class TaintedScroll : HereticWeapon
     { 
 
         public override string Texture => $"fourClassesMod/Sprites/Weapons/TaintedScroll";
@@ -35,6 +35,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
 
         // Make sure you can't use the item if you don't have enough resource 
 
+        public override float lifeCost => base.lifeCost + 5f;
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) 
         {
@@ -50,7 +51,6 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
                 Projectile.NewProjectile(source, position, perturbedSpeed, type, damage, knockback, player.whoAmI);
             }
 
-            HereticResourceHandler.hereticBleeds(player, 5f);
             return false; // return false to stop vanilla from calling Projectile.NewProjectile.
         }
         public override void AddRecipes() 

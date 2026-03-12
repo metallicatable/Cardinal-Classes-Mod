@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace fourClassesMod.Content.Items.Weapons.Heretic
 {
-    internal class FlamingSlimeRain : ModItem
+    internal class FlamingSlimeRain : HereticWeapon
     {
         public override string Texture => $"Terraria/Images/Item_{ItemID.PalmWoodDoor}";
 
@@ -35,13 +35,13 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
 
         // Make sure you can't use the item if you don't have enough resource
 
+        public override float lifeCost => base.lifeCost + 50f;
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             type = ModContent.ProjectileType<flamingSlimeGunCloneStream>();
             Projectile.NewProjectile(source, position, velocity, type, damage, knockback);
 
-            HereticResourceHandler.hereticBleeds(player, 50f);
             return false;
         }
     }

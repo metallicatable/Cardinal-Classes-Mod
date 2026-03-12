@@ -131,6 +131,11 @@ Items: {
 		DisplayName: Druid Weapon
 		Tooltip: ""
 	}
+
+	HereticWeapon: {
+		DisplayName: Heretic Weapon
+		Tooltip: ""
+	}
 }
 
 UI: {
@@ -202,4 +207,15 @@ hereticDeathMessages: {
 	1: "{0} overdrew their own life essence."
 	2: "{0} got greedy."
 	3: "{0} was consumed by their own magiks."
+}
+
+Prefixes: {
+	PowerTooltip: kabosh
+
+	HereticPrefix: {
+		AdditionalTooltip: ?
+		DisplayName: Heretic Prefix
+	}
+
+	LifeCostDescription: life cost
 }

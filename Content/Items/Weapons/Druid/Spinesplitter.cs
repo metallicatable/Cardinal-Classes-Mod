@@ -97,12 +97,11 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
     }
     
 
-    public class piercingFireball : ModProjectile
+    public class piercingFireball : DruidProjectile
     {
         public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.ImpFireball}";
         int timer = 0;
         int dustRate = 10;
-        int energyGained = 5;
 
         public override void SetDefaults()
         {
@@ -114,6 +113,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
             Projectile.timeLeft = 300;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = -1;
+            energyGain = 5;
         }
 
         public override void OnSpawn(IEntitySource source)
@@ -163,17 +163,9 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
             lightColor = Color.Yellow;
             return lightColor;
         }
-
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            Player player = Main.player[Projectile.owner];
-            var energyPlayer = player.GetModPlayer<EnergyPlayer>();
-
-            energyPlayer.EnergyCurrent += energyGained;
-        }
     }
 
-    public class burstFireball : ModProjectile
+    public class burstFireball : DruidProjectile
     {
         public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.DD2FlameBurstTowerT1Shot}";
         int timer = 0;

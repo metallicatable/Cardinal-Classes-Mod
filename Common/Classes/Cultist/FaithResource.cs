@@ -23,6 +23,7 @@ namespace fourClassesMod.Common.Classes.Cultist
         public int energyAttackFlat = 0;
         public static readonly int FaithMagnetGrabRange = 300;
         public static readonly Color HealFaithColor = new(255, 215, 0); // The color to use with CombatText when replenishing FaithCurrent
+        public bool canRegenFaith = true;
 
         // In order to make the Cultist Resource Cultist straightforward, several things have been left out that would be needed for a fully functional resource similar to mana and health. 
         // Here are additional things you might need to implement if you intend to make a custom resource:
@@ -76,7 +77,7 @@ namespace fourClassesMod.Common.Classes.Cultist
                 FaithRegenTimer++; // Increase it by 60 per second, or 1 per tick.
 
             // A simple timer that goes up to 1 second, increases the FaithCurrent by 1 and then resets back to 0.
-            if (FaithRegenTimer > 6 / FaithRegenRate /*&& Main.LocalPlayer.HeldItem.DamageType == ModContent.GetInstance<CultistDamageClass>()*/)
+            if (FaithRegenTimer > 6 / FaithRegenRate && Main.LocalPlayer.HeldItem.DamageType == ModContent.GetInstance<CultistDamageClass>() && canRegenFaith)
             {
                 FaithCurrent += 1;
                 FaithRegenTimer = 0;
