@@ -23,11 +23,13 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
     {
         public override string Texture => $"fourClassesMod/Sprites/Weapons/WintersWarmth"; //for using vanilla sprites
         // public override string Texture => $"fourClassesMod/Sprites/Weapons/Dandelion_Swarm"; this is for a modded sprite, use the correct file path
+
+
         public override void SetDefaults()
         {
             Item.damage = 2;
             Item.knockBack = 4f;
-            Item.useStyle = ItemUseStyleID.Swing; // handles anim
+            Item.useStyle = ItemUseStyleID.Shoot; // handles anim
             Item.useAnimation = 2; //keep useAnimation and useTime identical for most things, will cost clockwork assault rifle stuff if they arent the same
             Item.useTime = 2;
             Item.width = 32; //hitbox size for melee stuff

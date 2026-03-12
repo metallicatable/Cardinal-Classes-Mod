@@ -151,6 +151,11 @@ Items: {
 		DisplayName: Hate Ring
 		Tooltip: 15% increased heretic damage when below half health
 	}
+
+	HereticEmblem: {
+		DisplayName: Heretic Emblem
+		Tooltip: 15% increased heretic damage
+	}
 }
 
 UI: {
