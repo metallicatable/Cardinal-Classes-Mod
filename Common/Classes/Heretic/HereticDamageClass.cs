@@ -17,13 +17,15 @@ namespace fourClassesMod.Common.Classes.Heretic
             if (damageClass == DamageClass.Generic)
                 return StatInheritanceData.Full;
 
-            return new StatInheritanceData(
-                damageInheritance: 0f,
-                critChanceInheritance: 0f,
-                attackSpeedInheritance: 0f,
-                armorPenInheritance: 0f,
-                knockbackInheritance: 0f
+            return new StatInheritanceData( 
+                damageInheritance: 0f, 
+                critChanceInheritance: 0f, 
+                attackSpeedInheritance: 0f, 
+                armorPenInheritance: 0f, 
+                knockbackInheritance: 0f 
             );
+
+
             // Now, what exactly did we just do, you might ask? Well, let's see here...
             // StatInheritanceData is a struct which you'll need to return one of for any given outcome this method.
             // Normally, the latter of these two would be written as "StatInheritanceData.None", rather than being typed out by hand...
