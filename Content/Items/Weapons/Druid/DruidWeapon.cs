@@ -85,8 +85,10 @@ namespace fourClassesMod.Content.Items.Weapons.Druid
             {
                 Player player = Main.player[Projectile.owner];
                 var energyPlayer = player.GetModPlayer<EnergyPlayer>();
-
-                energyPlayer.EnergyCurrent += energyGain;
+                if (energyPlayer.canRegenEnergy)
+                {
+                    energyPlayer.EnergyCurrent += energyGain;
+                }
             }
         }
     }

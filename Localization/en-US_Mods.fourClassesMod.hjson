@@ -152,9 +152,25 @@ Items: {
 		Tooltip: 15% increased heretic damage when below half health
 	}
 
+<<<<<<< HEAD
 	HereticEmblem: {
 		DisplayName: Heretic Emblem
 		Tooltip: 15% increased heretic damage
+=======
+	HereticWeapon: {
+		DisplayName: Heretic Weapon
+		Tooltip: ""
+	}
+
+	Test: {
+		DisplayName: Test
+		Tooltip: Reduces life cost of heretic weapons by 1
+	}
+
+	BloodsoakedMedallion: {
+		DisplayName: Bloodsoaked Medallion
+		Tooltip: ""
+>>>>>>> 637b7f898e9846cabc5d105b1a4b5f17766ed10d
 	}
 }
 
@@ -227,4 +243,15 @@ hereticDeathMessages: {
 	1: "{0} overdrew their own life essence."
 	2: "{0} got greedy."
 	3: "{0} was consumed by their own magiks."
+}
+
+Prefixes: {
+	HereticPrefix.DisplayName: Heretic Prefix
+	LifeCostDescription: life cost
+	DoubleEdged.DisplayName: Double Edged
+	Draining.DisplayName: Draining
+	Painful.DisplayName: Painful
+	Rending.DisplayName: Rending
+	Safe.DisplayName: Safe
+	Visceral.DisplayName: Visceral
 }

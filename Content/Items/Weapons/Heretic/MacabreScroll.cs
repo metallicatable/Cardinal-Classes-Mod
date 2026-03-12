@@ -10,7 +10,7 @@ using Terraria.ModLoader;
  
 namespace fourClassesMod.Content.Items.Weapons.Heretic 
 {
-    internal class MacabreScroll : ModItem
+    internal class MacabreScroll : HereticWeapon
     {
 
         public override string Texture => $"fourClassesMod/Sprites/Weapons/MacabreScroll";
@@ -33,6 +33,8 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
             Item.shootSpeed = 8f; // This value bleeds into the behavior of the projectile as velocity, keep that in mind when tweaking values 
         }
 
+        public override int lifeCost => 5;
+
         // Make sure you can't use the item if you don't have enough resource 
 
 
@@ -49,7 +51,7 @@ namespace fourClassesMod.Content.Items.Weapons.Heretic
                 Projectile.NewProjectile(source, position, perturbedSpeed, type, damage, knockback, player.whoAmI);
             }
 
-            HereticResourceHandler.hereticBleeds(player, 5f);
+            base.Shoot(player, source, position, velocity, type, damage, knockback);
             return false; // return false to stop vanilla from calling Projectile.NewProjectile.
         }
 

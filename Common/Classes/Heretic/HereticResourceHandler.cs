@@ -12,13 +12,17 @@ namespace fourClassesMod.Common.Classes.Heretic
 {
     public class HereticResourceHandler : ModPlayer
     {
-
-        private static float lifeMult = 1f; 
-        private static float lifeFlat = 0f; 
-
-        public static void hereticBleeds(Player player, float damage) 
+        public static void HereticBleeds(Player player, int damage) 
         {            
-            player.Hurt(player.DeathByLocalization("hereticDeathMessages." + Main.rand.Next(4)), (int)((lifeMult * damage) + lifeFlat), 0, false, false, -1, false, 1000, 1000, 0f); 
-        } 
+            CardinalPlayer cardinal = player.GetModPlayer<CardinalPlayer>();
+            damage = (int)(damage * cardinal.lifeCostMult);
+            player.Hurt(player.DeathByLocalization("hereticDeathMessages." + Main.rand.Next(4)), (damage + cardinal.lifeCostFlat), 0, false, false, -1, false, 1000, 1000, 0f); 
+        }
+
+        public override void ResetEffects()
+        {
+           // lifeCostFlat = 0;
+          //  lifeCostMult = 1f;
+        }
     } 
 } 

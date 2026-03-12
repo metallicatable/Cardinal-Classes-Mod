@@ -1,4 +1,9 @@
+<<<<<<< HEAD:Content/Items/Accessories/BandOfVitriol.cs
 ﻿using fourClassesMod.Common.Classes.Heretic;
+=======
+﻿using fourClassesMod.Common;
+using fourClassesMod.Common.Classes.Heretic;
+>>>>>>> 637b7f898e9846cabc5d105b1a4b5f17766ed10d:Content/Items/Accessories/Heretic/BandOfVitriol.cs
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +14,7 @@ using Terraria.GameContent.UI.ResourceSets;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace fourClassesMod.Content.Items.Accessories
+namespace fourClassesMod.Content.Items.Accessories.Heretic
 {
     internal class BandOfVitriol : ModItem
     {
@@ -19,7 +24,11 @@ namespace fourClassesMod.Content.Items.Accessories
         public override void SetDefaults()
         {
             Item.accessory = true;
+//HEAD:Content/Items/Accessories/BandOfVitriol.cs//
             Item.rare = ItemRarityID.Lime;
+
+            Item.lifeRegen += 2;
+ //637b7f898e9846cabc5d105b1a4b5f17766ed10d:Content/Items/Accessories/Heretic/BandOfVitriol.cs//
         }
 
         public override void AddRecipes()
@@ -48,6 +57,22 @@ namespace fourClassesMod.Content.Items.Accessories
 
         }
 
+// HEAD:Content/Items/Accessories/BandOfVitriol.cs
     
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.GetDamage<HereticDamageClass>() += 0.15f;
+
+            if (player.statLife  < player.statLifeMax2 / 2)
+            {
+                player.GetDamage<HereticDamageClass>() += 0.15f;
+            }
+
+            player.GetModPlayer<CardinalPlayer>().lifeCostMult -= 0.1f;
+
+            player.PotionDelayModifier *= 0.75f;
+
+        }
+//637b7f898e9846cabc5d105b1a4b5f17766ed10d:Content/Items/Accessories/Heretic/BandOfVitriol.cs
     }
 }

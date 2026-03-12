@@ -45,7 +45,41 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
                 .Register();
         }
 
-        
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        { // overrides the shoot command to have different effects for left and right click, as well as allowing energy to work as intended.
+
+            var energyPlayer = player.GetModPlayer<EnergyPlayer>(); // creates a variable based on the EnergyPlayer in common/druid so that energy can be influenced 
+            Vector2 perturbedVelocity; // new variable we can use to edit velocity without breaking the game
+
+            if (player.altFunctionUse == 2) // if player is right-clicking
+            {
+                if (energyPlayer.EnergyCurrent >= energyCost) // if player has enough energy
+                {
+                    type = ModContent.ProjectileType<SpineBall>(); // change projectile type from purification powder to the modded burstFireball
+
+                    EnergyAttack(player, source, position, velocity / 2, type, 0, knockback, player.whoAmI);
+
+                    energyPlayer.EnergyCurrent -= energyCost; // lower energy after using big attacl
+                    return false; // tell the game to not use the vanilla shoot behaviour so ours can run instead
+                }
+                else
+                {
+                    return false; // functionality for when the weapon is right clicked but not enough energy is present
+                }
+            }
+            else // what to do when left clicked
+            {
+                type = ProjectileID.WoodenArrowFriendly; // fires wooden arrows when left clicks
+
+                perturbedVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(5)); // This adds a random spread to the projectiles, 5 degrees in either direction.
+                perturbedVelocity *= 2f + Main.rand.NextFloat(-0.5f, 0.5f); // randomizes velocity by at minumum 1.5x and maximum 2.5x
+
+                FastAttack(player, source, position, perturbedVelocity, type, damage, knockback, player.whoAmI); // create the projectile
+                return false; // tell the game not to create the projectile itself, as we just did
+            }
+        }
+
+
     }
     
 

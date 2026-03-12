@@ -24,16 +24,30 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
         public override string Texture => $"fourClassesMod/Sprites/Weapons/WintersWarmth"; //for using vanilla sprites
         // public override string Texture => $"fourClassesMod/Sprites/Weapons/Dandelion_Swarm"; this is for a modded sprite, use the correct file path
 
+<<<<<<< HEAD
+=======
+        public override void SetStaticDefaults()
+        {
+            Item.staff[Type] = true; // This makes the useStyle animate as a staff instead of as a gun.
+        }
+>>>>>>> 637b7f898e9846cabc5d105b1a4b5f17766ed10d
 
         public override void SetDefaults()
         {
-            Item.damage = 2;
+            Item.damage = 1;
             Item.knockBack = 4f;
             Item.useStyle = ItemUseStyleID.Shoot; // handles anim
+<<<<<<< HEAD
             Item.useAnimation = 2; //keep useAnimation and useTime identical for most things, will cost clockwork assault rifle stuff if they arent the same
             Item.useTime = 2;
             Item.width = 32; //hitbox size for melee stuff
             Item.height = 32;
+=======
+            Item.useAnimation = 4; //keep useAnimation and useTime identical for most things, will cost clockwork assault rifle stuff if they arent the same
+            Item.useTime = 4;
+            Item.width = 40; //hitbox size for melee stuff
+            Item.height = 40;
+>>>>>>> 637b7f898e9846cabc5d105b1a4b5f17766ed10d
             Item.UseSound = SoundID.Item1;
             Item.DamageType = ModContent.GetInstance<DruidDamageClass>(); // tells the game the damage type
             Item.noMelee = true; // The projectile will do the damage and not the item
@@ -44,6 +58,8 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
 
             Item.shootSpeed = 12f; // affects Projectile.velocity
         }
+
+        
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         { // overrides the shoot command to have different effects for left and right click, as well as allowing energy to work as intended.
@@ -73,6 +89,7 @@ namespace fourClassesMod.Content.Items.Weapons.Druid // tells the game where to 
 
                 perturbedVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(5)); // This adds a random spread to the projectiles, 5 degrees in either direction.
                 perturbedVelocity *= 2f + Main.rand.NextFloat(-0.5f, 0.5f); // randomizes velocity by at minumum 1.5x and maximum 2.5x
+                
 
                 FastAttack(player, source, position, perturbedVelocity, type, damage, knockback); // create the projectile
                 return false; // tell the game not to create the projectile itself, as we just did
