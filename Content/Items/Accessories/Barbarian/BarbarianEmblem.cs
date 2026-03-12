@@ -1,4 +1,5 @@
-﻿using fourClassesMod.Common.Classes.Heretic;
+﻿using fourClassesMod.Common.Classes.Barbarian;
+using fourClassesMod.Common.Classes.Heretic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,12 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace fourClassesMod.Content.Items.Accessories.Heretic 
+namespace fourClassesMod.Content.Items.Accessories.Barbarian
 {
-    internal class HereticEmblem : ModItem 
+    internal class BarbarianEmblem : ModItem 
     {
 
-        public override string Texture => $"fourClassesMod/Sprites/Accessories/HereticEmblem"; 
+        public override string Texture => $"fourClassesMod/Sprites/Accessories/BarbarianEmblem"; 
         
 
         public override void SetDefaults()
@@ -27,7 +28,14 @@ namespace fourClassesMod.Content.Items.Accessories.Heretic
 
         public override void UpdateAccessory(Player player, bool hideVisual) 
         {
-            player.GetDamage<HereticDamageClass>() += 0.15f; 
+            
+            
+            player.GetDamage<BarbarianDamageClass>() += 0.15f; 
+
+           
+
         }
+
+
     }
 }

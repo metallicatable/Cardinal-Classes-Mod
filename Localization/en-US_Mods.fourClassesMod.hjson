@@ -269,6 +269,21 @@ Items: {
 		DisplayName: Heretic Weapon
 		Tooltip: ""
 	}
+
+	BarbarianEmblem: {
+		DisplayName: Barbarian Emblem
+		Tooltip: ""
+	}
+
+	CultistEmblem: {
+		DisplayName: Cultist Emblem
+		Tooltip: ""
+	}
+
+	DruidEmblem: {
+		DisplayName: Druid Emblem
+		Tooltip: ""
+	}
 }
 
 UI: {
