@@ -134,7 +134,13 @@ Items: {
 
 	BandOfVitriol: {
 		DisplayName: Band of Vitriol
-		Tooltip: ""
+		Tooltip:
+			'''
+			15% increased heretic damage, and a further 15% increase when below half health 
+			Increases life regeneration by 2 
+			10% reduced health cost of heretic weapons 
+			25% reduced healing potion cooldown
+			'''
 	}
 
 	RingOfVitality: {
@@ -158,7 +164,7 @@ Items: {
 	}
 
 	Test: {
-		DisplayName: Test
+		DisplayName: Bloodsoaked Medallion
 		Tooltip: Reduces life cost of heretic weapons by 1
 	}
 

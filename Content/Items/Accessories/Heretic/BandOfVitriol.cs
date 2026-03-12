@@ -46,8 +46,7 @@ namespace fourClassesMod.Content.Items.Accessories.Heretic
             }
 
             player.GetModPlayer<CardinalPlayer>().lifeCostMult -= 0.1f;
-
-            player.PotionDelayModifier *= 0.75f;
+            player.pStone = true; // gives pilosopher's stone effect and ensures it cant stack
 
         }
     }
