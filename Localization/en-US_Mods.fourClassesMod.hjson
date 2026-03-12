@@ -158,6 +158,11 @@ Items: {
 		Tooltip: 15% increased heretic damage when below half health
 	}
 
+<<<<<<< HEAD
+	HereticEmblem: {
+		DisplayName: Heretic Emblem
+		Tooltip: 15% increased heretic damage
+=======
 	HereticWeapon: {
 		DisplayName: Heretic Weapon
 		Tooltip: ""
@@ -171,6 +176,7 @@ Items: {
 	BloodsoakedMedallion: {
 		DisplayName: Bloodsoaked Medallion
 		Tooltip: ""
+>>>>>>> 637b7f898e9846cabc5d105b1a4b5f17766ed10d
 	}
 }
 

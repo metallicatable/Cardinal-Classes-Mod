@@ -14,7 +14,7 @@ namespace fourClassesMod.Content.Items.Accessories.Heretic
     {
 
         public override string Texture => $"fourClassesMod/Sprites/Accessories/HateRing";
-        public static readonly int MultiplicativeDelayDecrease = 25;
+        
 
         public override void SetDefaults()
         {
