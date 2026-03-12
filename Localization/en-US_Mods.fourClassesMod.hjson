@@ -132,6 +132,26 @@ Items: {
 		Tooltip: ""
 	}
 
+	BandOfVitriol: {
+		DisplayName: Band of Vitriol
+		Tooltip: ""
+	}
+
+	RingOfVitality: {
+		DisplayName: Ring of Vitality
+		Tooltip: ""
+	}
+
+	BandOfVitality: {
+		DisplayName: Band of Vitality
+		Tooltip: ""
+	}
+
+	HateRing: {
+		DisplayName: Hate Ring
+		Tooltip: 15% increased heretic damage when below half health
+	}
+
 	HereticWeapon: {
 		DisplayName: Heretic Weapon
 		Tooltip: ""
