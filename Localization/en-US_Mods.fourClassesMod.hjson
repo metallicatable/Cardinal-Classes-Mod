@@ -158,51 +158,158 @@ Items: {
 		Tooltip: 15% increased heretic damage when below half health
 	}
 
-<<<<<<< HEAD
 	HereticEmblem: {
 		DisplayName: Heretic Emblem
 		Tooltip: 15% increased heretic damage
-=======
-	HereticWeapon: {
-		DisplayName: Heretic Weapon
-		Tooltip: ""
+
+		HereticWeapon: {
+			DisplayName: Heretic Weapon
+			Tooltip: ""
+		}
+
+		Test: {
+			DisplayName: Bloodsoaked Medallion
+			Tooltip: Reduces life cost of heretic weapons by 1
+		}
+
+		BloodsoakedMedallion: {
+			DisplayName: Bloodsoaked Medallion
+			Tooltip: ""
+		}
 	}
 
-	Test: {
-		DisplayName: Bloodsoaked Medallion
-		Tooltip: Reduces life cost of heretic weapons by 1
+	UI: {
+		rage: Mods.fourClassesMod.UI.rage
+		Faith: Mods.fourClassesMod.UI.Faith
+		Energy: Mods.fourClassesMod.UI.Energy
+	}
+
+	DamageClasses: {
+		HereticDamageClass.DisplayName: heretic damage
+		BarbarianDamageClass.DisplayName: barbaric damage
+		CultistDamageClass.DisplayName: cultic damage
+		DruidDamageClass.DisplayName: druidic damage
+		CultistFaithClass.DisplayName: Cultist Faith Class
+		DruidEnergyClass.DisplayName: Druid Energy Class
+	}
+
+	Projectiles: {
+		ChargedDandelionSwarmSeeds.DisplayName: Charged Dandelion Swarm Seeds
+		DandelionSwarmSeeds.DisplayName: Dandelion Swarm Seeds
+		DandelionSwarmSeedsChargeClone.DisplayName: Dandelion Swarm Seeds Charge Clone
+		dartTrapProjectile.DisplayName: dart Trap Projectile
+		dartTrapProjectileDart.DisplayName: dart Trap Projectile Dart
+		flamingSlimeGunCloneStream.DisplayName: flaming Slime Gun Clone Stream
+		flamingSlimeSpikeClone.DisplayName: flaming Slime Spike Clone
+		mixedCoralProjectile1.DisplayName: mixed Coral Projectile1
+		mixedCoralProjectile2.DisplayName: mixed Coral Projectile2
+		mixedCoralProjectile3.DisplayName: mixed Coral Projectile3
+		mixedCoralProjectile4.DisplayName: mixed Coral Projectile4
+		mixedCoralProjectile5.DisplayName: mixed Coral Projectile5
+		mixedCoralProjectile6.DisplayName: mixed Coral Projectile6
+		mixedCoralProjectile7.DisplayName: mixed Coral Projectile7
+		mixedCoralProjectile8.DisplayName: mixed Coral Projectile8
+		SlimeGunCloneStream.DisplayName: Slime Gun Clone Stream
+		slimeSpikeClone.DisplayName: slime Spike Clone
+		starFishProjectile.DisplayName: star Fish Projectile
+		laserCloneProjectile.DisplayName: laser Clone Projectile
+		laserCloneProjectile2.DisplayName: laser Clone Projectile2
+		superDartTrapProjectile.DisplayName: super Dart Trap Projectile
+		superDartTrapProjectileDart.DisplayName: super Dart Trap Projectile Dart
+		superFlameTrapProjectile.DisplayName: super Flame Trap Projectile
+		superSpikyBallTrapProjectile.DisplayName: super Spiky Ball Trap Projectile
+		superSpikyBallTrapProjectileSpikyBall.DisplayName: super Spiky Ball Trap Projectile Spiky Ball
+		gelStream.DisplayName: gel Stream
+		transmutationHandler.DisplayName: transmutation Handler
+		babySlimeClone.DisplayName: baby Slime Clone
+		burstFireball.DisplayName: burst Fireball
+		piercingFireball.DisplayName: piercing Fireball
+		druidExampleProjectile.DisplayName: druid Example Projectile
+		Spines.DisplayName: Spines
+		SpinesBall.DisplayName: Spines Ball
+		Spine.DisplayName: Spine
+		campfireProjectile.DisplayName: campfire Projectile
+		snowBallClone.DisplayName: snow Ball Clone
+		campfireAura.DisplayName: campfire Aura
+		SpineBall.DisplayName: Spine Ball
+		DruidProjectile.DisplayName: Druid Projectile
+	}
+
+	Buffs: {
+		rageBuff: {
+			DisplayName: Rage
+			Description: You are overflowing with rage, sharply increasing damage and attack speed.
+		}
+	}
+
+	hereticDeathMessages: {
+		0: "{0}'s blood became dry of mana, unable to sustain its body."
+		1: "{0} overdrew their own life essence."
+		2: "{0} got greedy."
+		3: "{0} was consumed by their own magiks."
+	}
+
+	Prefixes: {
+		HereticPrefix.DisplayName: Heretic Prefix
+		LifeCostDescription: life cost
+		DoubleEdged.DisplayName: Double Edged
+		Draining.DisplayName: Draining
+		Painful.DisplayName: Painful
+		Rending.DisplayName: Rending
+		Safe.DisplayName: Safe
+		Visceral.DisplayName: Visceral
 	}
 
 	BloodsoakedMedallion: {
 		DisplayName: Bloodsoaked Medallion
 		Tooltip: ""
->>>>>>> 637b7f898e9846cabc5d105b1a4b5f17766ed10d
+	}
+
+	HereticWeapon: {
+		DisplayName: Heretic Weapon
+		Tooltip: ""
 	}
 }
 
 UI: {
-	rage: Mods.fourClassesMod.UI.rage
-	Faith: Mods.fourClassesMod.UI.Faith
 	Energy: Mods.fourClassesMod.UI.Energy
+	Faith: Mods.fourClassesMod.UI.Faith
+	rage: Mods.fourClassesMod.UI.rage
 }
 
 DamageClasses: {
-	HereticDamageClass.DisplayName: heretic damage
-	BarbarianDamageClass.DisplayName: barbaric damage
-	CultistDamageClass.DisplayName: cultic damage
-	DruidDamageClass.DisplayName: druidic damage
-	CultistFaithClass.DisplayName: Cultist Faith Class
-	DruidEnergyClass.DisplayName: Druid Energy Class
+	BarbarianDamageClass.DisplayName: Barbarian Damage Class
+	CultistDamageClass.DisplayName: Cultist Damage Class
+	DruidDamageClass.DisplayName: Druid Damage Class
+	HereticDamageClass.DisplayName: Heretic Damage Class
+}
+
+Prefixes: {
+	LifeCostDescription: Mods.fourClassesMod.Prefixes.LifeCostDescription
+	DoubleEdged.DisplayName: Double Edged
+	Draining.DisplayName: Draining
+	HereticPrefix.DisplayName: Heretic Prefix
+	Painful.DisplayName: Painful
+	Rending.DisplayName: Rending
+	Safe.DisplayName: Safe
+	Visceral.DisplayName: Visceral
+}
+
+Buffs: {
+	rageBuff: {
+		DisplayName: rage Buff
+		Description: Mods.fourClassesMod.Buffs.rageBuff.Description
+	}
 }
 
 Projectiles: {
+	babySlimeClone.DisplayName: baby Slime Clone
 	ChargedDandelionSwarmSeeds.DisplayName: Charged Dandelion Swarm Seeds
 	DandelionSwarmSeeds.DisplayName: Dandelion Swarm Seeds
 	DandelionSwarmSeedsChargeClone.DisplayName: Dandelion Swarm Seeds Charge Clone
 	dartTrapProjectile.DisplayName: dart Trap Projectile
 	dartTrapProjectileDart.DisplayName: dart Trap Projectile Dart
-	flamingSlimeGunCloneStream.DisplayName: flaming Slime Gun Clone Stream
-	flamingSlimeSpikeClone.DisplayName: flaming Slime Spike Clone
+	gelStream.DisplayName: gel Stream
 	mixedCoralProjectile1.DisplayName: mixed Coral Projectile1
 	mixedCoralProjectile2.DisplayName: mixed Coral Projectile2
 	mixedCoralProjectile3.DisplayName: mixed Coral Projectile3
@@ -211,53 +318,25 @@ Projectiles: {
 	mixedCoralProjectile6.DisplayName: mixed Coral Projectile6
 	mixedCoralProjectile7.DisplayName: mixed Coral Projectile7
 	mixedCoralProjectile8.DisplayName: mixed Coral Projectile8
-	SlimeGunCloneStream.DisplayName: Slime Gun Clone Stream
-	slimeSpikeClone.DisplayName: slime Spike Clone
 	starFishProjectile.DisplayName: star Fish Projectile
-	laserCloneProjectile.DisplayName: laser Clone Projectile
-	laserCloneProjectile2.DisplayName: laser Clone Projectile2
 	superDartTrapProjectile.DisplayName: super Dart Trap Projectile
 	superDartTrapProjectileDart.DisplayName: super Dart Trap Projectile Dart
 	superFlameTrapProjectile.DisplayName: super Flame Trap Projectile
 	superSpikyBallTrapProjectile.DisplayName: super Spiky Ball Trap Projectile
 	superSpikyBallTrapProjectileSpikyBall.DisplayName: super Spiky Ball Trap Projectile Spiky Ball
-	gelStream.DisplayName: gel Stream
 	transmutationHandler.DisplayName: transmutation Handler
-	babySlimeClone.DisplayName: baby Slime Clone
 	burstFireball.DisplayName: burst Fireball
-	piercingFireball.DisplayName: piercing Fireball
-	druidExampleProjectile.DisplayName: druid Example Projectile
-	Spines.DisplayName: Spines
-	SpinesBall.DisplayName: Spines Ball
-	Spine.DisplayName: Spine
 	campfireProjectile.DisplayName: campfire Projectile
-	snowBallClone.DisplayName: snow Ball Clone
-	campfireAura.DisplayName: campfire Aura
-	SpineBall.DisplayName: Spine Ball
+	druidExampleProjectile.DisplayName: druid Example Projectile
 	DruidProjectile.DisplayName: Druid Projectile
-}
-
-Buffs: {
-	rageBuff: {
-		DisplayName: Rage
-		Description: You are overflowing with rage, sharply increasing damage and attack speed.
-	}
-}
-
-hereticDeathMessages: {
-	0: "{0}'s blood became dry of mana, unable to sustain its body."
-	1: "{0} overdrew their own life essence."
-	2: "{0} got greedy."
-	3: "{0} was consumed by their own magiks."
-}
-
-Prefixes: {
-	HereticPrefix.DisplayName: Heretic Prefix
-	LifeCostDescription: life cost
-	DoubleEdged.DisplayName: Double Edged
-	Draining.DisplayName: Draining
-	Painful.DisplayName: Painful
-	Rending.DisplayName: Rending
-	Safe.DisplayName: Safe
-	Visceral.DisplayName: Visceral
+	laserCloneProjectile.DisplayName: laser Clone Projectile
+	laserCloneProjectile2.DisplayName: laser Clone Projectile2
+	piercingFireball.DisplayName: piercing Fireball
+	snowBallClone.DisplayName: snow Ball Clone
+	Spine.DisplayName: Spine
+	SpineBall.DisplayName: Spine Ball
+	flamingSlimeGunCloneStream.DisplayName: flaming Slime Gun Clone Stream
+	flamingSlimeSpikeClone.DisplayName: flaming Slime Spike Clone
+	SlimeGunCloneStream.DisplayName: Slime Gun Clone Stream
+	slimeSpikeClone.DisplayName: slime Spike Clone
 }
